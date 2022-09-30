@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Cart</title>
+    <link rel="stylesheet" href="bootstrap-5.2.0-dist/css/bootstrap.min.css">
+
+</head>
+<body>
+<div class="container my-5">
+    <div class="row">
+        <!-- Cart Start -->
+        <div class="container-fluid">
+            <div class="row px-xl-5">
+                <div class="col-lg-8 table-responsive mb-5">
+                    <table class="table ">
+                        <thead class="thead-dark">
+                        <tr>
+                            <th style="font-size: 20px">Tên sách</th>
+                            <th style="font-size: 20px">Giá</th>
+                            <th style="font-size: 20px">Số lượng</th>
+                            <th style="font-size: 20px">Tổng tiền</th>
+                            <th style="font-size: 20px">Xóa</th>
+                        </tr>
+                        </thead>
+                        <tbody class="align-middle">
+                        <tr>
+                            <td class="align-middle"><img
+                                    src="/prototypes/img/hinh1.jpg" alt=""
+                                    style="width: 50px;"> Đồi thỏ
+                            </td>
+                            <td class="align-middle">260.000 VNĐ</td>
+                            <td class="align-middle">
+                                <ul class="list-inline mt-3">
+                                    <li class="list-inline-item"><span class="btn btn-success" id="btn-minus1">-</span></li>
+                                    <li class="list-inline-item"><span class="btn btn-success badge bg-secondary"
+                                                                       id="var-value1">1</span></li>
+                                    <li class="list-inline-item"><span class="btn btn-success" id="btn-plus1">+</span></li>
+                                </ul>
+                            </td>
+                            <td class="align-middle">260.000 VNĐ</td>
+                            <td class="align-middle">
+                                <button class="btn btn-sm btn-danger"  data-bs-toggle="modal" data-bs-target="#exampleModal">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash3-fill" viewBox="0 0 16 16">
+                                        <path d="M11 1.5v1h3.5a.5.5 0 0 1 0 1h-.538l-.853 10.66A2 2 0 0 1 11.115 16h-6.23a2 2 0 0 1-1.994-1.84L2.038 3.5H1.5a.5.5 0 0 1 0-1H5v-1A1.5 1.5 0 0 1 6.5 0h3A1.5 1.5 0 0 1 11 1.5Zm-5 0v1h4v-1a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5ZM4.5 5.029l.5 8.5a.5.5 0 1 0 .998-.06l-.5-8.5a.5.5 0 1 0-.998.06Zm6.53-.528a.5.5 0 0 0-.528.47l-.5 8.5a.5.5 0 0 0 .998.058l.5-8.5a.5.5 0 0 0-.47-.528ZM8 4.5a.5.5 0 0 0-.5.5v8.5a.5.5 0 0 0 1 0V5a.5.5 0 0 0-.5-.5Z"/>
+                                    </svg>
+                                </button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="align-middle"><img src="/prototypes/img/hinh2.jpg"
+                                                          alt="" style="width: 50px;"> Tôi không thích ồn ào
+                            </td>
+                            <td class="align-middle">220.000 VNĐ</td>
+                            <td class="align-middle">
+                                <ul class="list-inline mt-3">
+                                    <li class="list-inline-item"><span class="btn btn-success" id="btn-minus2">-</span></li>
+                                    <li class="list-inline-item"><span class="btn btn-success badge bg-secondary"
+                                                                       id="var-value2">1</span></li>
+                                    <li class="list-inline-item"><span class="btn btn-success" id="btn-plus2">+</span></li>
+                                </ul>
+                            </td>
+                            <td class="align-middle">220.000 VNĐ</td>
+                            <td class="align-middle">
+                                <button class="btn btn-sm btn-danger"  data-bs-toggle="modal" data-bs-target="#exampleModal">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash3-fill" viewBox="0 0 16 16">
+                                        <path d="M11 1.5v1h3.5a.5.5 0 0 1 0 1h-.538l-.853 10.66A2 2 0 0 1 11.115 16h-6.23a2 2 0 0 1-1.994-1.84L2.038 3.5H1.5a.5.5 0 0 1 0-1H5v-1A1.5 1.5 0 0 1 6.5 0h3A1.5 1.5 0 0 1 11 1.5Zm-5 0v1h4v-1a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5ZM4.5 5.029l.5 8.5a.5.5 0 1 0 .998-.06l-.5-8.5a.5.5 0 1 0-.998.06Zm6.53-.528a.5.5 0 0 0-.528.47l-.5 8.5a.5.5 0 0 0 .998.058l.5-8.5a.5.5 0 0 0-.47-.528ZM8 4.5a.5.5 0 0 0-.5.5v8.5a.5.5 0 0 0 1 0V5a.5.5 0 0 0-.5-.5Z"/>
+                                    </svg>
+                                </button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="align-middle"><img src="/prototypes/img/hinh3.jpg"
+                                                          alt="" style="width: 50px;"> Bầu trời năm ấy...
+                            </td>
+                            <td class="align-middle">160.000 VNĐ</td>
+                            <td class="align-middle">
+                                <ul class="list-inline mt-3">
+                                    <li class="list-inline-item"><span class="btn btn-success" id="btn-minus3">-</span></li>
+                                    <li class="list-inline-item"><span class="btn btn-success badge bg-secondary"
+                                                                       id="var-value3">1</span></li>
+                                    <li class="list-inline-item"><span class="btn btn-success" id="btn-plus3">+</span></li>
+                                </ul>
+                            </td>
+                            <td class="align-middle">160.000 VNĐ</td>
+                            <td class="align-middle">
+                                <button class="btn btn-sm btn-danger"  data-bs-toggle="modal" data-bs-target="#exampleModal">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash3-fill" viewBox="0 0 16 16">
+                                        <path d="M11 1.5v1h3.5a.5.5 0 0 1 0 1h-.538l-.853 10.66A2 2 0 0 1 11.115 16h-6.23a2 2 0 0 1-1.994-1.84L2.038 3.5H1.5a.5.5 0 0 1 0-1H5v-1A1.5 1.5 0 0 1 6.5 0h3A1.5 1.5 0 0 1 11 1.5Zm-5 0v1h4v-1a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5ZM4.5 5.029l.5 8.5a.5.5 0 1 0 .998-.06l-.5-8.5a.5.5 0 1 0-.998.06Zm6.53-.528a.5.5 0 0 0-.528.47l-.5 8.5a.5.5 0 0 0 .998.058l.5-8.5a.5.5 0 0 0-.47-.528ZM8 4.5a.5.5 0 0 0-.5.5v8.5a.5.5 0 0 0 1 0V5a.5.5 0 0 0-.5-.5Z"/>
+                                    </svg>
+                                </button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="align-middle"><img
+                                    src="/prototypes/img/hinh4c.jpg" alt=""
+                                    style="width: 50px;"> Đùng gọi anh là người yêu cũ
+                            </td>
+                            <td class="align-middle">170.000 VNĐ</td>
+                            <td class="align-middle">
+                                <ul class="list-inline mt-3">
+                                    <li class="list-inline-item"><span class="btn btn-success" id="btn-minus4">-</span></li>
+                                    <li class="list-inline-item"><span class="btn btn-success badge bg-secondary"
+                                                                       id="var-value4">1</span></li>
+                                    <li class="list-inline-item"><span class="btn btn-success" id="btn-plus4">+</span></li>
+                                </ul>
+                            </td>
+                            <td class="align-middle">170.000 VNĐ</td>
+                            <td class="align-middle">
+                                <button class="btn btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash3-fill" viewBox="0 0 16 16">
+                                        <path d="M11 1.5v1h3.5a.5.5 0 0 1 0 1h-.538l-.853 10.66A2 2 0 0 1 11.115 16h-6.23a2 2 0 0 1-1.994-1.84L2.038 3.5H1.5a.5.5 0 0 1 0-1H5v-1A1.5 1.5 0 0 1 6.5 0h3A1.5 1.5 0 0 1 11 1.5Zm-5 0v1h4v-1a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5ZM4.5 5.029l.5 8.5a.5.5 0 1 0 .998-.06l-.5-8.5a.5.5 0 1 0-.998.06Zm6.53-.528a.5.5 0 0 0-.528.47l-.5 8.5a.5.5 0 0 0 .998.058l.5-8.5a.5.5 0 0 0-.47-.528ZM8 4.5a.5.5 0 0 0-.5.5v8.5a.5.5 0 0 0 1 0V5a.5.5 0 0 0-.5-.5Z"/>
+                                    </svg>
+                                </button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="align-middle"><img
+                                    src="/prototypes/img/nhung_loai_hoa_co_gai.jpg" alt=""
+                                    style="width: 50px;"> Những loài hoa có gai
+                            </td>
+                            <td class="align-middle">210.000 VNĐ</td>
+                            <td class="align-middle">
+                                <ul class="list-inline mt-3">
+                                    <li class="list-inline-item"><span class="btn btn-success" id="btn-minus">-</span></li>
+                                    <li class="list-inline-item"><span class="btn btn-success badge bg-secondary"
+                                                                       id="var-value">1</span></li>
+                                    <li class="list-inline-item"><span class="btn btn-success" id="btn-plus">+</span></li>
+                                </ul>
+                            </td>
+                            <td class="align-middle">210.000 VNĐ</td>
+                            <td class="align-middle">
+                                <button class="btn btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash3-fill" viewBox="0 0 16 16">
+                                        <path d="M11 1.5v1h3.5a.5.5 0 0 1 0 1h-.538l-.853 10.66A2 2 0 0 1 11.115 16h-6.23a2 2 0 0 1-1.994-1.84L2.038 3.5H1.5a.5.5 0 0 1 0-1H5v-1A1.5 1.5 0 0 1 6.5 0h3A1.5 1.5 0 0 1 11 1.5Zm-5 0v1h4v-1a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5ZM4.5 5.029l.5 8.5a.5.5 0 1 0 .998-.06l-.5-8.5a.5.5 0 1 0-.998.06Zm6.53-.528a.5.5 0 0 0-.528.47l-.5 8.5a.5.5 0 0 0 .998.058l.5-8.5a.5.5 0 0 0-.47-.528ZM8 4.5a.5.5 0 0 0-.5.5v8.5a.5.5 0 0 0 1 0V5a.5.5 0 0 0-.5-.5Z"/>
+                                    </svg>
+                                </button>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="col-lg-4">
+                    <div style="margin-top: 0.5rem">
+                        <div class="example-container" >
+                            <div class="w-100" style="display: flex">
+                                <p style="margin: 0;font-size: 1.3rem;font-weight: 600">Mã Giảm Giá :</p>
+                                <input  style="margin-left: 0.3rem;border-radius: 5px" type="text"  placeholder="Mã Giảm Giá">
+                            </div>
+                        </div>
+
+                        <div class="bg-light p-30 mb-5" style="margin-top: 1.5rem">
+                            <div class="border-bottom pb-2">
+                                <div class="d-flex justify-content-between mb-3">
+                                    <h5>Tổng tiền</h5>
+                                    <h5>1.020.000 VNĐ</h5>
+                                </div>
+                                <div class="d-flex justify-content-between">
+                                    <h5 class="font-weight-medium">Phí vận chuyển</h5>
+                                    <h5 class="font-weight-medium">30.000 VNĐ</h5>
+                                </div>
+                            </div>
+                            <div class="pt-2">
+                                <div class="d-flex justify-content-between mt-2">
+                                    <h5>Tổng</h5>
+                                    <h5>1.050.000 VNĐ</h5>
+                                </div>
+                                <div class="text-center">
+                                    <button class="btn btn-block btn-success font-weight-bold my-3 py-3 ">Tiếp tục thanh toán</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Cart End -->
+        </div>
+    </div>
+</div>
+<!-- Modal Delete -->
+
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title " style="color: red" id="exampleModalLabel">Cảnh Báo !!! </h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                Bạn có chắc chắn muốn xóa  hay không ???
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-danger"  data-bs-dismiss="modal">Delete</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+</body>
+<script src="bootstrap-5.2.0-dist/js/bootstrap.bundle.min.js"></script>
+
+</html>

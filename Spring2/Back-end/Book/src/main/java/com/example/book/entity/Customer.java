@@ -18,4 +18,6 @@ public class Customer {
     @Column(columnDefinition = "BIT(1) DEFAULT 0")
     private boolean status;
 
+
+
 }

@@ -1,0 +1,356 @@
+:root {
+    --input-padding-x: 1.5rem;
+    --input-padding-y: .75rem;
+}
+
+.body {
+    margin: 0;
+    padding: 0;
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    min-height: 100vh;
+    width: 100%
+}
+
+a {
+    text-decoration: none;
+}
+
+.btn-close {
+    border: 1px solid;
+    border-radius: 22px;
+    padding: 10px;
+}
+
+.card-title {
+    font-weight: bolder !important;
+}
+
+.card-signin {
+    border: 0;
+    box-shadow: 0 2rem 3rem 0 rgba(0, 0, 0, 0.5);
+}
+
+.card-signin .card-title {
+    margin-bottom: 1rem;
+    font-weight: 300;
+    font-size: 1.5rem;
+}
+
+.card-signin .card-body {
+    padding: 1rem;
+}
+
+.form-signin {
+    width: 100%;
+}
+
+.form-signin .btn {
+    margin-top: 10px;
+    letter-spacing: .1rem;
+    padding: 0.5rem;
+    transition: all 0.2s;
+    width: 100%;
+}
+
+.form-label-group {
+    position: relative;
+    margin-bottom: 1rem;
+}
+
+.form-label-group input {
+}
+
+.btn-google {
+    color: white;
+    background-color: #ea4335;
+}
+
+.btn-facebook {
+    color: white;
+    background-color: #3b5998;
+}
+
+.error-place {
+    height: 15px;
+}
+
+@media screen and (min-width: 320px) {
+    .map {
+        width: 300px;
+    }
+}
+
+@media screen and (min-width: 1280px) {
+    .map {
+        width: 600px;
+    }
+}
+
+/*footer*/
+
+iframe {
+    width: 100%;
+    height: 250px;
+    border: 0;
+}
+
+svg {
+    margin-bottom: 3px;
+}
+
+.footer-bgcolor {
+    background-color: #f7f7f7;
+}
+
+.bi-arrow-up {
+    width: 22px;
+    height: 22px;
+    color: white;
+}
+
+#myBtn {
+    display: none; /* Hidden by default */
+    position: fixed; /* Fixed/sticky position */
+    bottom: 20px; /* Place the button at the bottom of the page */
+    right: 0; /* Place the button 30px from the right */
+    z-index: 99; /* Make sure it does not overlap */
+    border: none; /* Remove borders */
+    outline: none; /* Remove outline */
+    background-color: red; /* Set a background color */
+    color: white; /* Text color */
+    opacity: 0.8;
+    cursor: pointer; /* Add a mouse pointer on hover */
+    padding: 15px; /* Some padding */
+    border-radius: 5px; /* Rounded corners */
+    font-size: 14px; /* Increase font size */
+}
+
+#myBtn:hover {
+    background-color: #555; /* Add a dark-grey background on hover */
+}
+
+@media (max-width: 992px) {
+    #myBtn {
+        padding: 4px;
+        bottom: 5px;
+    }
+
+
+    /*LOGIN*/
+    .divider:after,
+    .divider:before {
+        content: "";
+        flex: 1;
+        height: 1px;
+        background: #eee;
+    }
+
+    /*body*/
+    .gio:hover{
+        background-color: #e5ca99;
+    }
+    /*footer*/
+
+    #footer {
+        color: #37423b;
+        font-size: 14px;
+        background: #eef0ef;
+    }
+
+    #footer .footer-top {
+        padding: 60px 0 30px 0;
+        background: #f9faf9;
+    }
+
+    #footer .footer-top .footer-contact {
+        margin-bottom: 30px;
+    }
+
+    #footer .footer-top .footer-contact h4 {
+        font-size: 22px;
+        margin: 0 0 30px 0;
+        padding: 2px 0 2px 0;
+        line-height: 1;
+        font-weight: 700;
+    }
+
+    #footer .footer-top .footer-contact p {
+        font-size: 14px;
+        line-height: 24px;
+        margin-bottom: 0;
+        font-family: "Raleway", sans-serif;
+        color: #777777;
+    }
+
+    #footer .footer-top h4 {
+        font-size: 16px;
+        font-weight: bold;
+        color: #444444;
+        position: relative;
+        padding-bottom: 12px;
+    }
+
+    #footer .footer-top .footer-links {
+        margin-bottom: 30px;
+    }
+
+    #footer .footer-top .footer-links ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+    }
+
+    #footer .footer-top .footer-links ul i {
+        padding-right: 2px;
+        color: #5fcf80;
+        font-size: 18px;
+        line-height: 1;
+    }
+
+    #footer .footer-top .footer-links ul li {
+        padding: 10px 0;
+        display: flex;
+        align-items: center;
+    }
+
+    #footer .footer-top .footer-links ul li:first-child {
+        padding-top: 0;
+    }
+
+    #footer .footer-top .footer-links ul a {
+        color: #777777;
+        transition: 0.3s;
+        display: inline-block;
+        line-height: 1;
+    }
+
+    #footer .footer-top .footer-links ul a:hover {
+        text-decoration: none;
+        color: black;
+    }
+
+    #footer .footer-newsletter {
+        font-size: 15px;
+    }
+
+    #footer .footer-newsletter h4 {
+        font-size: 16px;
+        font-weight: bold;
+        color: #444444;
+        position: relative;
+        padding-bottom: 12px;
+    }
+
+    #footer .footer-newsletter form {
+        margin-top: 30px;
+        background: #fff;
+        padding: 6px 10px;
+        position: relative;
+        border-radius: 50px;
+        text-align: left;
+        border: 1px solid #e0e5e2;
+    }
+
+    #footer .footer-newsletter form input[type=email] {
+        border: 0;
+        padding: 4px 8px;
+        width: calc(100% - 100px);
+    }
+
+    #footer .footer-newsletter form input[type=submit] {
+        position: absolute;
+        top: -1px;
+        right: -1px;
+        bottom: -1px;
+        border: 0;
+        background: none;
+        font-size: 16px;
+        padding: 0 20px 2px 20px;
+        background: #5fcf80;
+        color: #fff;
+        transition: 0.3s;
+        border-radius: 50px;
+        box-shadow: 0px 2px 15px rgba(0, 0, 0, 0.1);
+    }
+
+    #footer .footer-newsletter form input[type=submit]:hover {
+        background: #3ac162;
+    }
+
+    #footer .credits {
+        padding-top: 5px;
+        font-size: 13px;
+    }
+
+    #footer .credits a {
+        color: #3ac162;
+        transition: 0.3s;
+    }
+
+    #footer .credits a:hover {
+        color: #5fcf80;
+    }
+
+    #footer .social-links a {
+        font-size: 18px;
+        display: inline-block;
+        background: #5fcf80;
+        color: #fff;
+        line-height: 1;
+        padding: 8px 0;
+        margin-right: 4px;
+        border-radius: 50%;
+        text-align: center;
+        width: 36px;
+        height: 36px;
+        transition: 0.3s;
+    }
+
+    #footer .social-links a:hover {
+        background: #3ac162;
+        color: #fff;
+        text-decoration: none;
+    }
+
+    /*register*/
+
+    .gradient-custom {
+        /* fallback for old browsers */
+        background: #f093fb;
+
+        /* Chrome 10-25, Safari 5.1-6 */
+        background: -webkit-linear-gradient(to bottom right, rgba(240, 147, 251, 1), rgba(245, 87, 108, 1));
+
+        /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+        background: linear-gradient(to bottom right, rgba(240, 147, 251, 1), rgba(245, 87, 108, 1))
+    }
+
+    .card-registration .select-input.form-control[readonly]:not([disabled]) {
+        font-size: 1rem;
+        line-height: 2.15;
+        padding-left: .75em;
+        padding-right: .75em;
+    }
+    .card-registration .select-arrow {
+        top: 13px;
+    }
+    th{
+        font-size: 20px;
+    }
+
+
+    /*bookdetail*/
+
+    p {
+        /*width: 300px;*/
+        overflow: hidden;
+        text-overflow: ellipsis;
+        line-height: 20px;
+        -webkit-line-clamp: 5;
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
+    }
+
+}
+

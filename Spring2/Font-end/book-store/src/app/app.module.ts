@@ -7,6 +7,11 @@ import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 import { BodyComponent } from './body/body.component';
 import { LoginComponent } from './login/login.component';
+import { BookDetailComponent } from './book-detail/book-detail.component';
+import { CartComponent } from './cart/cart.component';
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
+import {HttpClient, HttpClientModule} from "@angular/common/http";
+import { RegisterComponent } from './register/register.component';
 
 @NgModule({
   declarations: [
@@ -15,11 +20,18 @@ import { LoginComponent } from './login/login.component';
     FooterComponent,
     BodyComponent,
     LoginComponent,
+    BookDetailComponent,
+    CartComponent,
+    RegisterComponent,
 
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    ReactiveFormsModule,
+    HttpClientModule,
+    FormsModule
+
   ],
   providers: [],
   bootstrap: [AppComponent]
