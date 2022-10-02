@@ -10,8 +10,8 @@
       <div class="col-2"></div>
       <div class="col-8 align-items-center justify-content-center"
            style="display: flex;gap: 0.9rem;font-size: 1rem;margin:6px auto;color:#076a3c ">
-        <a href=""><div style="color: #076a3c">Đăng Ký</div></a>
-        <a href=""> <div style="color:#076a3c">Đăng Nhập</div></a>
+         <div type="button" style="color: #076a3c" routerLink="/register"> Đăng Ký</div>
+          <div type="button" style="color:#076a3c" routerLink="/login"> Đăng Nhập</div>
       </div>
       <div class="col-2"></div>
     </div>
@@ -26,7 +26,7 @@
 <!--        <svg style="height: 4rem;width: 4rem" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-cart-check-fill" viewBox="0 0 16 16">-->
 <!--          <path d="M.5 1a.5.5 0 0 0 0 1h1.11l.401 1.607 1.498 7.985A.5.5 0 0 0 4 12h1a2 2 0 1 0 0 4 2 2 0 0 0 0-4h7a2 2 0 1 0 0 4 2 2 0 0 0 0-4h1a.5.5 0 0 0 .491-.408l1.5-8A.5.5 0 0 0 14.5 3H2.89l-.405-1.621A.5.5 0 0 0 2 1H.5zM6 14a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm7 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm-1.646-7.646-3 3a.5.5 0 0 1-.708 0l-1.5-1.5a.5.5 0 1 1 .708-.708L8 8.293l2.646-2.647a.5.5 0 0 1 .708.708z"/>-->
 <!--        </svg>-->
-        <img style="width: 6rem;height: 3rem;margin-bottom: 1rem" src="assets/img/cart.png" alt="" >
+        <img type="button" [routerLink]="['/cart']" style="width: 6rem;height: 3rem;margin-bottom: 1rem" src="assets/img/cart.png"  >
       </div>
       <div class="row" >
         <div class="col-8" style="margin-left: 5rem;margin-top: 5px" >
@@ -38,14 +38,37 @@
       </div>
     </div>
   </div>
-  <div class="row" style="height: 3rem;background-color:#157641">
-    <div class="col-2"></div>
-    <div class="col-8 align-items-center justify-content-center" style="display: flex;gap: 5rem;color: white">
-      <div style="width: 10rem"> Danh mục sách </div>
-      <div style="width: 10rem"> Sách bán chạy </div>
-      <div style="width: 15rem"> Chương trình khuyến mãi </div>
-      <div style="width: 10rem"> Giảm giá đặc biệt </div>
+  <div class="row" style="height: 40px;background-color:#157641">
+<!--    <div class="col-2"></div>-->
+<!--    <div class="col-8 align-items-center justify-content-center" style="display: flex;gap: 4rem;color: white">-->
+<!--      <div type="button" style="width: 10rem" routerLink="/">-->
+<!--        Trang chủ-->
+<!--      </div>-->
+<!--      <div style="width: 10rem">-->
+<!--        Danh mục sách-->
+<!--&lt;!&ndash;        <ul class="sup-nav">&ndash;&gt;-->
+<!--&lt;!&ndash;        <li>loai1</li>&ndash;&gt;-->
+<!--&lt;!&ndash;        </ul>&ndash;&gt;-->
+<!--      </div>-->
+<!--      <div style="width: 10rem"> Sách bán chạy </div>-->
+<!--      <div style="width: 15rem"> Chương trình khuyến mãi </div>-->
+<!--      <div style="width: 10rem"> Giảm giá đặc biệt </div>-->
+<!--    </div>-->
+<!--    <div class="col-2"></div>-->
+    <div class="row nav">
+      <div class="col-12" style="padding: 0 10%">
+        <ul class="d-flex justify-content-between align-items-center uls">
+          <li type="button" [routerLink]="['/']">TRANG CHỦ</li>
+          <li>DANH MỤC SÁCH
+            <ul class="sup-nav">
+              <li (click)="getCategory(item.id)" *ngFor="let item of categoryList" class="text-uppercase">{{item.name}}</li>
+            </ul>
+          </li>
+          <li>SÁCH BÁN CHẠY</li>
+          <li>CHƯƠNG TRÌNH KHUYẾN MÃI</li>
+          <li>GIẢM GIÁ ĐẶC BIỆT</li>
+        </ul>
+      </div>
     </div>
-    <div class="col-2"></div>
   </div>
 </div>
