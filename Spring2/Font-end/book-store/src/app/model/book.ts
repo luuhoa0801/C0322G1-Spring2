@@ -12,7 +12,7 @@ export interface Book {
   translator?:string;
   publishingHome?:string;
   img?:string;
-  quantity?:string;
+  quantity?:number;
   totalPage?:number;
   releaseDate?:string;
   category?: Category;

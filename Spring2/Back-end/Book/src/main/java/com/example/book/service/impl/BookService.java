@@ -17,4 +17,9 @@ public class BookService implements IBookService {
     public Page<Book> FindAll(Integer idCategory, String name, Pageable pageable) {
         return bookRepository.findAll(idCategory,"%" +name+"%",pageable);
     }
+
+    @Override
+    public Book findById(int id) {
+        return bookRepository.findById(id).get();
+    }
 }

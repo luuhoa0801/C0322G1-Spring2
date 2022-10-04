@@ -11,6 +11,8 @@ import {HttpClientModule} from "@angular/common/http";
 import {SecurityModule} from "./security/security.module";
 import {CartModule} from "./cart/cart.module";
 import {BookModule} from "./book/book.module";
+import {ToastrModule} from "ngx-toastr";
+import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 
 @NgModule({
   declarations: [
@@ -27,7 +29,16 @@ import {BookModule} from "./book/book.module";
     FormsModule,
     SecurityModule,
     CartModule,
-    BookModule
+    BookModule,
+    BrowserAnimationsModule,
+    ToastrModule.forRoot({
+      positionClass :'toast-top-right',
+      timeOut: 1000,
+      progressBar: true,
+      progressAnimation: 'increasing',
+      preventDuplicates: true
+    }),
+
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs";
 import {Book} from "../model/book";
@@ -7,15 +7,24 @@ import {Book} from "../model/book";
   providedIn: 'root'
 })
 export class BookService {
-  API_URL = 'http://localhost:8080/api/book';
+  API_URL = 'http://localhost:8080/api/public/book';
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {
+  }
 
-  getAll(idType: number, search: string): Observable<any> {
-    return this.http.get<any>(this.API_URL + '/list?idType=' + idType + '&search=' + search);
+  getAll(idCategory: number, search: string): Observable<any> {
+    return this.http.get<any>(this.API_URL + '/list?idCategory=' + idCategory + '&name=@');
   }
-  // @ts-ignore
-  getListBook(): Observable<any>{
-    return this.http.get<any>(this.API_URL +'/list');
+
+  getListBook(): Observable<any> {
+    return this.http.get<any>(this.API_URL + '/list'  );
   }
+
+  findById(id: number): Observable<any> {
+    return this.http.get<any>(this.API_URL + '/list/show/' + id);
+  }
+
+  // getBookDetail(id:number) : Observable<any>{
+  //   return this.http.get<any>(this.API_URL +'/show/' + id)
+  // }
 }

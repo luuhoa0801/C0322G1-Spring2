@@ -11,7 +11,6 @@ public class Cart {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private LocalDate dateCreate;
-
     @Column(columnDefinition = "BIT(1) DEFAULT 0")
     private boolean status;
 

@@ -25,7 +25,8 @@
             ],
             "styles": [
               "src/styles.css",
-              "D:\\Backup\\F\\C0322G1_Spring2\\Spring2\\Font-end\\book-store\\node_modules\\bootstrap\\dist\\css\\bootstrap.min.css"
+              "D:\\Backup\\F\\C0322G1_Spring2\\Spring2\\Font-end\\book-store\\node_modules\\bootstrap\\dist\\css\\bootstrap.min.css",
+              "D:\\Backup\\F\\C0322G1_Spring2\\Spring2\\Font-end\\book-store\\node_modules\\ngx-toastr\\toastr.css"
             ],
             "scripts": [
               "D:\\Backup\\F\\C0322G1_Spring2\\Spring2\\Font-end\\book-store\\node_modules\\bootstrap\\dist\\js\\bootstrap.bundle.min.js"

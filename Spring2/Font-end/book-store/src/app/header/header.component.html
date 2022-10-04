@@ -2,16 +2,21 @@
   <div class="row" style="height: 2.5rem;background-color: #6fb3c6">
     <div class="col-6 align-items-center justify-content-center "
          style="display: flex;gap:1rem;font-size: 1rem;margin: 0 auto;color: #076a3c">
-      <div> Giới thiệu </div>
-      <div> Lịch sử giao dịch </div>
-      <div> Kiểm tra đơn hàng </div>
+      <div> Giới thiệu</div>
+      <div> Lịch sử giao dịch</div>
+      <div> Kiểm tra đơn hàng</div>
     </div>
     <div class="col-6">
       <div class="col-2"></div>
       <div class="col-8 align-items-center justify-content-center"
-           style="display: flex;gap: 0.9rem;font-size: 1rem;margin:6px auto;color:#076a3c ">
-         <div type="button" style="color: #076a3c" routerLink="/register"> Đăng Ký</div>
-          <div type="button" style="color:#076a3c" routerLink="/login"> Đăng Nhập</div>
+           style="display: flex;gap: 0.9rem;font-size: 1rem;margin:6px auto;color:#076a3c" [hidden]="isLoggedIn">
+        <div  style="color: #076a3c" routerLink="/register"> Đăng ký</div>
+        <div type="button" style="color:#076a3c" routerLink="/login"> Đăng Nhập</div>
+      </div>
+      <div class="col-8 align-items-center justify-content-center"
+           style="display: flex;gap: 0.9rem;font-size: 1rem;margin:6px auto;color:#076a3c" [hidden]="!isLoggedIn">
+            <div style="color: #076a3c">Tài khoản : <span> {{username}}</span></div>
+            <div ><a style="color:#076a3c" href=""(click)="logOut()">Đăng xuất</a></div>
       </div>
       <div class="col-2"></div>
     </div>
@@ -19,49 +24,37 @@
   <div class="row" style="height: 10rem; background-color: #9ed1db">
     <div class="col-1"></div>
     <div class=" col-5 " style="margin-top: 30px">
-      <img src="/assets/img/logo.png" >
+      <img src="/assets/img/logo.png">
     </div>
-    <div class="col-6" >
-      <div type="button" class="row col-8 align-items-center justify-content-end" style="margin-top: 1rem" >
-<!--        <svg style="height: 4rem;width: 4rem" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-cart-check-fill" viewBox="0 0 16 16">-->
-<!--          <path d="M.5 1a.5.5 0 0 0 0 1h1.11l.401 1.607 1.498 7.985A.5.5 0 0 0 4 12h1a2 2 0 1 0 0 4 2 2 0 0 0 0-4h7a2 2 0 1 0 0 4 2 2 0 0 0 0-4h1a.5.5 0 0 0 .491-.408l1.5-8A.5.5 0 0 0 14.5 3H2.89l-.405-1.621A.5.5 0 0 0 2 1H.5zM6 14a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm7 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm-1.646-7.646-3 3a.5.5 0 0 1-.708 0l-1.5-1.5a.5.5 0 1 1 .708-.708L8 8.293l2.646-2.647a.5.5 0 0 1 .708.708z"/>-->
-<!--        </svg>-->
-        <img type="button" [routerLink]="['/cart']" style="width: 6rem;height: 3rem;margin-bottom: 1rem" src="assets/img/cart.png"  >
+    <div class="col-6">
+      <div type="button" class="row col-8 align-items-center justify-content-end" style="margin-top: 1rem">
+        <!--        <svg style="height: 4rem;width: 4rem" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-cart-check-fill" viewBox="0 0 16 16">-->
+        <!--          <path d="M.5 1a.5.5 0 0 0 0 1h1.11l.401 1.607 1.498 7.985A.5.5 0 0 0 4 12h1a2 2 0 1 0 0 4 2 2 0 0 0 0-4h7a2 2 0 1 0 0 4 2 2 0 0 0 0-4h1a.5.5 0 0 0 .491-.408l1.5-8A.5.5 0 0 0 14.5 3H2.89l-.405-1.621A.5.5 0 0 0 2 1H.5zM6 14a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm7 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm-1.646-7.646-3 3a.5.5 0 0 1-.708 0l-1.5-1.5a.5.5 0 1 1 .708-.708L8 8.293l2.646-2.647a.5.5 0 0 1 .708.708z"/>-->
+        <!--        </svg>-->
+        <img type="button" routerLink="/cart" style="width: 6rem;height: 3rem;margin-bottom: 1rem"
+             src="assets/img/cart.png">
+<!--        [routerLink]="['/cart']"-->
       </div>
-      <div class="row" >
-        <div class="col-8" style="margin-left: 5rem;margin-top: 5px" >
+      <div class="row">
+        <div class="col-8" style="margin-left: 5rem;margin-top: 5px">
           <nav class="nav navbar-expand ">
-            <input type="search" class="form-control" name="name"   >
-            <button class="btn btn-success" type="submit" style="margin-left: 5px"  >Search</button>
+            <input type="search" class="form-control" name="name">
+            <button class="btn btn-success" type="submit" style="margin-left: 5px">Search</button>
           </nav>
         </div>
       </div>
     </div>
   </div>
   <div class="row" style="height: 40px;background-color:#157641">
-<!--    <div class="col-2"></div>-->
-<!--    <div class="col-8 align-items-center justify-content-center" style="display: flex;gap: 4rem;color: white">-->
-<!--      <div type="button" style="width: 10rem" routerLink="/">-->
-<!--        Trang chủ-->
-<!--      </div>-->
-<!--      <div style="width: 10rem">-->
-<!--        Danh mục sách-->
-<!--&lt;!&ndash;        <ul class="sup-nav">&ndash;&gt;-->
-<!--&lt;!&ndash;        <li>loai1</li>&ndash;&gt;-->
-<!--&lt;!&ndash;        </ul>&ndash;&gt;-->
-<!--      </div>-->
-<!--      <div style="width: 10rem"> Sách bán chạy </div>-->
-<!--      <div style="width: 15rem"> Chương trình khuyến mãi </div>-->
-<!--      <div style="width: 10rem"> Giảm giá đặc biệt </div>-->
-<!--    </div>-->
-<!--    <div class="col-2"></div>-->
     <div class="row nav">
       <div class="col-12" style="padding: 0 10%">
         <ul class="d-flex justify-content-between align-items-center uls">
-          <li type="button" [routerLink]="['/']">TRANG CHỦ</li>
+          <li type="button" routerLink="/list">TRANG CHỦ</li>
+<!--          [routerLink]="['/list']"-->
           <li>DANH MỤC SÁCH
             <ul class="sup-nav">
-              <li (click)="getCategory(item.id)" *ngFor="let item of categoryList" class="text-uppercase">{{item.name}}</li>
+              <li (click)="getCategory(item.id)" *ngFor="let item of categoryList"
+                  class="text-uppercase">{{item.name}}</li>
             </ul>
           </li>
           <li>SÁCH BÁN CHẠY</li>

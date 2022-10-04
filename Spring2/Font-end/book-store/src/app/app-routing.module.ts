@@ -8,6 +8,7 @@ const routes: Routes = [
     path: '',
     component: BodyComponent
   },
+  // {path: 'list/1', redirectTo: 'home', pathMatch: 'full'},
 
 ];
 

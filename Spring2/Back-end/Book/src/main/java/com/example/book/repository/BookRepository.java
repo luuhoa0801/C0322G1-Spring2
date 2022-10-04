@@ -19,4 +19,5 @@ public interface BookRepository extends JpaRepository<Book,Integer> {
 
     @Query(value = "select * from book where category_id = :idCategory or name like :name",nativeQuery = true)
     Page<Book> findAll(@Param("idCategory") Integer idCategory,@Param("name") String name, Pageable pageable);
+
 }

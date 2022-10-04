@@ -8,10 +8,13 @@ const routes: Routes = [
   // { path: 'book/list/:id/:search',
   //   component: BodyComponent
   // },
+  { path: 'list/:id/:search',
+    component: BodyComponent
+  },
   { path: 'list',
     component: BodyComponent
   },
-  { path: 'bookDetail/:id',
+  { path: 'show/:id',
     component: BookDetailComponent
   }
 ];
