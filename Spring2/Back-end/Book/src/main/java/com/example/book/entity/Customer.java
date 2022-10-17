@@ -21,12 +21,10 @@ public class Customer {
     @Column(columnDefinition = "BIT(1) DEFAULT 0")
     private boolean status;
 
-    @JsonBackReference
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "app_user_id", referencedColumnName = "id")
     private AppUser appUser;
 
-    @JsonIgnore
     @OneToOne(mappedBy = "customer")
     private Cart cart;
 

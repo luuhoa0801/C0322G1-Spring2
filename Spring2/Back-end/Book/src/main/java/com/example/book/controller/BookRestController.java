@@ -18,9 +18,7 @@ public class BookRestController {
     private IBookService iBookService;
 
     @GetMapping("/list")
-//    @RequestParam(name = "page", defaultValue = "3") Integer page,
-    public ResponseEntity<Page<Book>> getCategoryVn(
-                                                    @RequestParam(defaultValue = "",required = false) String name,
+    public ResponseEntity<Page<Book>> getCategoryVn(@RequestParam(defaultValue = "",required = false) String name,
                                                     @RequestParam(defaultValue = "0",required = false) Integer idCategory,
                                                     @PageableDefault(value = 8) Pageable pageable){
 //        Sort sort = Sort.by("view").descending();

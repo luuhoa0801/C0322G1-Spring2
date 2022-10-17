@@ -14,7 +14,6 @@ public class Cart {
     @Column(columnDefinition = "BIT(1) DEFAULT 0")
     private boolean status;
 
-    @JsonBackReference
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "customer_id", referencedColumnName = "id")
     private Customer customer;
