@@ -5,6 +5,8 @@ import {ActivatedRoute, Router} from "@angular/router";
 import {Toast, ToastrService} from "ngx-toastr";
 import {TokenStorageService} from "../../service/token-storage.service";
 import {ShareService} from "../../service/share.service";
+import {CartService} from "../../service/cart.service";
+import Swal from "sweetalert2";
 
 @Component({
   selector: 'app-body',
@@ -14,16 +16,14 @@ import {ShareService} from "../../service/share.service";
 export class BodyComponent implements OnInit {
   bookList: Book[] = [];
 
-
-  // indexPagination = 0;
-  // pages: Array<number>;
-  // previousPageStyle = 'inline-block';
-  // nextPageStyle = 'inline-block';
-  // totalElements = 0;
-  // pageSize = 6;
-  // displayPagination = 'inline-block';
-  // numberOfElement = 0;
-
+  error: string;
+  check: string[] = [];
+  page = 0;
+  previousPageStyle = 'inline-block';
+  nextPageStyle = 'inline-block';
+  totalElements = 0;
+  pageSize: number;
+  numberOfElement: number;
   // phan quyen
   username: string;
   idPatient: number;
@@ -34,9 +34,10 @@ export class BodyComponent implements OnInit {
   constructor(private bookService: BookService,
               private router: Router,
               private activeRouter: ActivatedRoute,
-              private toast : ToastrService,
-              private tokenStorageService : TokenStorageService,
-              private shareService : ShareService) {
+              private toast: ToastrService,
+              private tokenStorageService: TokenStorageService,
+              private shareService: ShareService,
+              private cartService: CartService) {
     this.shareService.getClickEvent().subscribe(() => {
       this.loadEditAdd();
     });
@@ -44,79 +45,65 @@ export class BodyComponent implements OnInit {
 
   ngOnInit(): void {
     this.loadEditAdd();
+    this.getList();
+  }
+
+  getList() {
+    this.pageSize = 8;
     this.activeRouter.paramMap.subscribe(param => {
       if (param.get('id') === null && param.get('search') == null) {
-        this.bookService.getListBook().subscribe(value => {
+        this.bookService.getListBook(this.page).subscribe(value => {
+          this.totalElements = value.totalElements;
           this.bookList = value.content;
+          this.numberOfElement = value.content.length;
+          console.log(value);
+          if (value.first) {
+            this.previousPageStyle = 'none';
+          } else  {
+            this.previousPageStyle = 'inline-block';
+          }
+          if (value.last) {
+            this.nextPageStyle = 'none';
+          } else {
+            this.nextPageStyle = 'inline-block';
+          }
+          console.log(value)
         }, error => "lỗi")
         return;
       }
       this.bookService.getAll(+param.get('id'), param.get('search')).subscribe(value => {
         if (value !== null) {
+          this.totalElements = value.totalElements;
           this.bookList = value.content;
+          this.numberOfElement = value.content.length;
+          if (value.first) {
+            this.previousPageStyle = 'none';
+          } else  {
+            this.previousPageStyle = 'inline-block';
+          }
+          if (value.last) {
+            this.nextPageStyle = 'none';
+          } else {
+            this.nextPageStyle = 'inline-none';
+          }
+          console.log(value)
         }
       })
     });
-
-    // this.getListBook();
   }
 
-// phan trang
-//   getListBook(size: number) {
-//     this.bookService.getListBook(this.pageSize).subscribe((data?: any) => {
-//       if (data === null) {
-//         this.totalPage = new Array(0);
-//         this.bookList = [];
-//         this.displayPagination = 'none';
-//         this.toast.warning('Không có dữ liệu.', 'Chú ý');
-//       } else {
-//         this.number = data?.number;
-//         this.pageSize = data?.size;
-//         this.numberOfElement = data?.numberOfElements;
-//         this.bookList = data.content;
-//         this.totalElements = data?.totalElements;
-//         this.totalPage = new Array(data?.totalPages);
-//       }
-//       this.checkPreviousAndNext();
-//       this.isCheckedAll();
-//     }, error1 => {
-//       this.bookList = null;
-//     });
-//   }
 
-  // previousPage(event: any) {
-  //   event.preventDefault();
-  //   this.indexPagination--;
-  //   this.ngOnInit();
-  // }
+  previousPage() {
+    this.page--;
+    this.getList();
+  }
 
-  // nextPage(event: any) {
-  //   event.preventDefault();
-  //   this.indexPagination++;
-  //   this.ngOnInit();
-  // }
+  nextPage() {
+    this.page++;
+    this.getList();
+  }
 
-  // checkPreviousAndNext() {
-  //   if (this.indexPagination === 0) {
-  //     this.previousPageStyle = 'none';
-  //   } else if (this.indexPagination !== 0) {
-  //     this.previousPageStyle = 'inline-block';
-  //   }
-  //   if (this.indexPagination < (this.totalPage.length - 1)) {
-  //     this.nextPageStyle = 'inline-block';
-  //   } else if (this.indexPagination === (this.totalPage.length - 1) || this.indexPagination > (this.totalPage.length - 1)) {
-  //     this.nextPageStyle = 'none';
-  //   }
-  // }
 
-  // isCheckedAll() {
-  //   const listDeleted = this.deleteList.filter((item) => this.bookList.some(item2 => item.id === item2.id));
-  //   const lengthDeleted = listDeleted.filter(
-  //     (exporter, index) => index === listDeleted.findIndex(
-  //       other => exporter.id === other.id
-  //     )).length;
-  //   this.checkAll = lengthDeleted === this.bookList.length;
-  // }
 
   // phanquyen
   loadEditAdd(): void {
@@ -128,4 +115,9 @@ export class BodyComponent implements OnInit {
     this.isLoggedIn = this.username != null;
   }
 
+  addCart(item: Book) {
+    this.cartService.addCard(item, 1);
+    Swal.fire('Thông báo', 'Thêm vào giỏ hàng thành công', 'success');
+
+  }
 }

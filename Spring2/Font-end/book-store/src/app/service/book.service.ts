@@ -16,8 +16,8 @@ export class BookService {
     return this.http.get<any>(this.API_URL + '/list?idCategory=' + idCategory + '&name=@');
   }
 
-  getListBook(): Observable<any> {
-    return this.http.get<any>(this.API_URL + '/list'  );
+  getListBook(page: number): Observable<any> {
+    return this.http.get<any>(this.API_URL + '/list?page=' +page);
   }
 
   findById(id: number): Observable<any> {

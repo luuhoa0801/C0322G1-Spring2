@@ -13,6 +13,7 @@ import {CartModule} from "./cart/cart.module";
 import {BookModule} from "./book/book.module";
 import {ToastrModule} from "ngx-toastr";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
+import {MatTooltipModule} from "@angular/material/tooltip";
 
 @NgModule({
   declarations: [

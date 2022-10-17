@@ -1,64 +1,55 @@
-<div class="container-fluid" style="width: 80%;margin:1rem auto" >
-  <div class="row row-cols-2 row-cols-md-4 g-4 " >
+<div class="container-fluid" style="width: 80%;margin:1rem auto">
+  <div class="row row-cols-2 row-cols-md-4 g-4 ">
     <div class="col" *ngFor="let item of bookList">
-      <div class="card h-100" style="width: 90%;margin: auto"  >
-        <div>
-          <a  [routerLink]="['/show',item.id]">
-            <img  style="height: 20rem"  class="card-img-top" [src]="item.img" >
-          </a>
+      <div class="card h-100" style="width: 90%;margin: auto">
+        <div class="product-item bg-light mb-4">
+          <div class="product-img position-relative overflow-hidden">
+            <img style="height: 22rem" class=" img-fluid w-100 card-img-top" [src]="item.img">
+            <div class="product-action">
+              <a class="btn btn-light btn-square" [routerLink]="'/cart'" (click)="addCart(item)"
+                   matTooltip="Thêm vào giỏ hàng"><i
+                class="fa fa-shopping-cart"></i></a>
+              <a [routerLink]="['/show',item.id]" class="btn btn-light btn-square" matTooltip="Thông tin chi tiết"><i
+                class="fa fa-info"></i></a>
+              <a class="btn btn-light btn-square" *ngIf="['ROLE_ADMIN', 'ROLE_USER'].indexOf(role)!==-1" matTooltip="Chỉnh sửa thông tin"><i
+                class="fa fa-edit"></i></a>
+              <a class="btn btn-light btn-square " *ngIf="['ROLE_ADMIN', 'ROLE_USER'].indexOf(role)!==-1" matTooltip="Xóa sách"
+                 data-target="#deleteModal"><i class="fa fa-trash"></i></a>
+            </div>
+          </div>
+
         </div>
         <div class="card-body" style="padding: 5px">
-          <h5 class="card-title"> {{item.name}} </h5>
-          <div style="display: flex;gap: 0.5rem;margin: auto" *ngIf="['ROLE_ADMIN', 'ROLE_USER'].indexOf(role)!==-1" >
-              <button style="width: 48%" class="btn btn-success">Sửa</button>
-              <button style="width: 48%" class="btn btn-danger">Xóa</button>
-          </div>
-          <button type="button" style="width: 100%;border-radius: 5px;margin-top: 0.2rem" class="gio">
-            <div>
-              <svg xmlns="http://www.w3.org/2000/svg" style="margin-right: 5px;color: #20c26a"
-                   width="16" height="16" fill="currentColor" class="bi bi-bag-check-fill " viewBox="0 0 16 16">
-                <path fill-rule="evenodd"
-                      d="M10.5 3.5a2.5 2.5 0 0 0-5 0V4h5v-.5zm1 0V4H15v10a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V4h3.5v-.5a3.5 3.5 0 1 1 7 0zm-.646 5.354a.5.5 0 0 0-.708-.708L7.5 10.793 6.354 9.646a.5.5 0 1 0-.708.708l1.5 1.5a.5.5 0 0 0 .708 0l3-3z"/>
-              </svg>
-              <span>Thêm giỏ hàng</span>
-            </div>
-          </button>
+          <h5 class="card-title text-center"> {{item.name}} </h5>
         </div>
       </div>
     </div>
   </div>
 
-<!--  <div style="height: 50px;margin-top: 0.7rem;position: relative" class="container pagination-advertisement mb-3">-->
-<!--    <ul class="pagination justify-content-end" style="text-align: end">-->
-<!--&lt;!&ndash;      <li>&ndash;&gt;-->
-<!--&lt;!&ndash;        <select class="form-select" (change)="totalElement($event)">&ndash;&gt;-->
-<!--&lt;!&ndash;          <option value="5">5</option>&ndash;&gt;-->
-<!--&lt;!&ndash;          <option value="10">10</option>&ndash;&gt;-->
-<!--&lt;!&ndash;          <option value="15">15</option>&ndash;&gt;-->
-<!--&lt;!&ndash;          <option value="full">Tất Cả</option>&ndash;&gt;-->
-<!--&lt;!&ndash;        </select>&ndash;&gt;-->
-<!--&lt;!&ndash;      </li>&ndash;&gt;-->
-<!--      <li class="page-item">-->
-<!--              <span style="margin: 0 20px 0 40px">-->
-<!--               {{pageSize * indexPagination + 1}} - {{pageSize * indexPagination + numberOfElement}}-->
-<!--                trên {{totalElements}}-->
-<!--              </span>-->
-<!--        <button  (click)="previousPage($event)" [ngStyle]="{'display':previousPageStyle}" type="button"-->
-<!--                class="btn btn-outline-primary">-->
-<!--          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-left" viewBox="0 0 16 16">-->
-<!--            <path fill-rule="evenodd" d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8z"/>-->
-<!--          </svg>-->
-<!--        </button>-->
-<!--        <button (click)="nextPage($event)" [ngStyle]="{'display':nextPageStyle}" style="margin-left: 10px"-->
-<!--                type="button"-->
-<!--                class="btn btn-outline-primary">-->
-<!--          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-right" viewBox="0 0 16 16">-->
-<!--            <path fill-rule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8z"/>-->
-<!--          </svg>-->
-<!--        </button>-->
-<!--      </li>-->
-<!--    </ul>-->
-<!--  </div>-->
+    <div style="height: 50px;margin-top: 0.7rem;position: relative" class="container pagination-advertisement mb-3">
+      <ul class="pagination justify-content-end" style="text-align: end">
+
+        <li class="page-item">
+                <span style="margin: 0 20px 0 40px">
+                 {{pageSize * page + 1}} - {{pageSize * page + numberOfElement}}
+                  trên {{totalElements}}
+                </span>
+          <button  (click)="previousPage()" [ngStyle]="{'display':previousPageStyle}" type="button"
+                  class="btn btn-outline-primary">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-left" viewBox="0 0 16 16">
+              <path fill-rule="evenodd" d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8z"/>
+            </svg>
+          </button>
+          <button (click)="nextPage()" [ngStyle]="{'display':nextPageStyle}" style="margin-left: 10px"
+                  type="button"
+                  class="btn btn-outline-primary">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-right" viewBox="0 0 16 16">
+              <path fill-rule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8z"/>
+            </svg>
+          </button>
+        </li>
+      </ul>
+    </div>
 
 </div>
 
