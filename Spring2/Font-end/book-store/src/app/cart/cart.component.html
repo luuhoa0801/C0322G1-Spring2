@@ -20,18 +20,18 @@
                 [src]="item.book.img"
                 style="width: 50px;"> {{item.book.name}}
               </td>
-              <td class="align-middle">{{item.book.price}}</td>
+              <td class="align-middle">{{item.book.price | currency:'':'':'3.0'}}</td>
               <td class="align-middle">
                 <ul class="list-inline mt-3">
-                  <li *ngIf="item.quantity>0"  class="list-inline-item" (click)="decCard(item.book )"><span class="btn btn-success" id="btn-minus1">-</span></li>
+                  <li *ngIf="item.quantity>1"  class="list-inline-item" (click)="decCard(item.book )"><span class="btn btn-success" id="btn-minus1">-</span></li>
                   <li class="list-inline-item"><span style="width: 3.5rem" class="btn btn-success bg-secondary"
                                                      id="var-value1">{{item.quantity}}</span></li>
                   <li class="list-inline-item" (click)="incCard(item.book)"><span class="btn btn-success" id="btn-plus1">+</span></li>
                 </ul>
               </td>
-              <td class="align-middle">{{item.quantity * item.book.price}}</td>
+              <td class="align-middle">{{item.quantity * item.book.price | currency:'':'':'3.0'}}</td>
               <td class="align-middle">
-                <button class="btn btn-sm btn-danger"  data-bs-toggle="modal" data-bs-target="#exampleModal">
+                <button (click)="deleteCart(item.book.id)" class="btn btn-sm btn-danger"  data-bs-toggle="modal" data-bs-target="#exampleModal">
                   <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash3-fill" viewBox="0 0 16 16">
                     <path d="M11 1.5v1h3.5a.5.5 0 0 1 0 1h-.538l-.853 10.66A2 2 0 0 1 11.115 16h-6.23a2 2 0 0 1-1.994-1.84L2.038 3.5H1.5a.5.5 0 0 1 0-1H5v-1A1.5 1.5 0 0 1 6.5 0h3A1.5 1.5 0 0 1 11 1.5Zm-5 0v1h4v-1a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5ZM4.5 5.029l.5 8.5a.5.5 0 1 0 .998-.06l-.5-8.5a.5.5 0 1 0-.998.06Zm6.53-.528a.5.5 0 0 0-.528.47l-.5 8.5a.5.5 0 0 0 .998.058l.5-8.5a.5.5 0 0 0-.47-.528ZM8 4.5a.5.5 0 0 0-.5.5v8.5a.5.5 0 0 0 1 0V5a.5.5 0 0 0-.5-.5Z"/>
                   </svg>
@@ -55,17 +55,17 @@
               <div class="border-bottom pb-2">
                 <div class="d-flex justify-content-between mb-3">
                   <h5>Tổng tiền</h5>
-                  <h5>{{totalCart}} VNĐ</h5>
+                  <h5>{{totalCart |currency:'':'':'3.0'}} VNĐ</h5>
                 </div>
                 <div class="d-flex justify-content-between">
                   <h5 class="font-weight-medium">Phí vận chuyển</h5>
-                  <h5 class="font-weight-medium">{{money}} VNĐ</h5>
+                  <h5 class="font-weight-medium">{{money |currency:'':'':'3.0'}} VNĐ</h5>
                 </div>
               </div>
               <div class="pt-2">
                 <div class="d-flex justify-content-between mt-2">
                   <h5>Tổng</h5>
-                  <h5>{{money + totalCart}} VNĐ</h5>
+                  <h5>{{money + totalCart |currency:'':'':'3.0'}} VNĐ</h5>
                 </div>
                 <div class="text-center">
                   <button class="btn btn-block btn-success font-weight-bold my-3 py-3 ">Tiếp tục thanh toán</button>
@@ -84,21 +84,4 @@
 </div>
 
 
-<!-- Modal Delete -->
-<!--<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">-->
-<!--  <div class="modal-dialog">-->
-<!--    <div class="modal-content">-->
-<!--      <div class="modal-header">-->
-<!--        <h5 class="modal-title " style="color: red" id="exampleModalLabel">Cảnh Báo !!! </h5>-->
-<!--        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>-->
-<!--      </div>-->
-<!--      <div class="modal-body">-->
-<!--        Bạn có chắc chắn muốn xóa hay không ???-->
-<!--      </div>-->
-<!--      <div class="modal-footer">-->
-<!--        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>-->
-<!--        <button type="button" class="btn btn-danger"  data-bs-dismiss="modal"  >Delete</button>-->
-<!--      </div>-->
-<!--    </div>-->
-<!--  </div>-->
-<!--</div>-->
+

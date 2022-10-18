@@ -4,6 +4,7 @@ import {CategoryService} from "../service/category.service";
 import {Router} from "@angular/router";
 import {TokenStorageService} from "../service/token-storage.service";
 import {ShareService} from "../service/share.service";
+import {FormControl, FormGroup} from "@angular/forms";
 
 @Component({
   selector: 'app-header',
@@ -13,10 +14,13 @@ import {ShareService} from "../service/share.service";
 export class HeaderComponent implements OnInit {
   categoryList: Category[] = [];
   username: string;
-  idPatient: number;
   currentUser: string;
   role: string;
   isLoggedIn = false;
+
+  formSearch = new FormGroup({
+    search: new FormControl()
+  });
   constructor(private categoryService: CategoryService,
               private router: Router,
               private tokenStorageService: TokenStorageService,
@@ -29,6 +33,7 @@ export class HeaderComponent implements OnInit {
   ngOnInit(): void {
     this.categoryService.getAllCategory().subscribe(value => {
       this.categoryList = value;
+      console.log(value);
     });
     this.loadEditAdd()
   }
@@ -47,5 +52,17 @@ export class HeaderComponent implements OnInit {
 
   logOut() {
     this.tokenStorageService.signOut();
+  }
+
+  // search() {
+  //   if (this.formSearch.get('name').value == null || this.formSearch.get('name').value === '' + '') {
+  //     this.router.navigateByUrl('/book/list');
+  //   } else {
+  //     this.router.navigateByUrl('/book/list' + this.formSearch.get('name').value);
+  //   }
+  // }
+  search() {
+    console.log(this.formSearch)
+    this.router.navigateByUrl(`list/0/` +this.formSearch.value.search);
   }
 }

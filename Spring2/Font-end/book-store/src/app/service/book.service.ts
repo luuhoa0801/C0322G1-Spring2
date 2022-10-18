@@ -13,18 +13,20 @@ export class BookService {
   }
 
   getAll(idCategory: number, search: string): Observable<any> {
-    return this.http.get<any>(this.API_URL + '/list?idCategory=' + idCategory + '&name=@');
+    if (idCategory == 0) {
+      return this.http.get<any>(this.API_URL + '/list?name=' + search);
+    }else {
+      return this.http.get<any>(this.API_URL + '/list?idCategory=' + idCategory + '&name=@');
+    }
+
   }
 
   getListBook(page: number): Observable<any> {
-    return this.http.get<any>(this.API_URL + '/list?page=' +page);
+    return this.http.get<any>(this.API_URL + '/list?page=' + page);
   }
 
   findById(id: number): Observable<any> {
     return this.http.get<any>(this.API_URL + '/list/show/' + id);
   }
 
-  // getBookDetail(id:number) : Observable<any>{
-  //   return this.http.get<any>(this.API_URL +'/show/' + id)
-  // }
 }

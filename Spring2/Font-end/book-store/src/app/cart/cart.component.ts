@@ -45,7 +45,7 @@ export class CartComponent implements OnInit {
     this.totalCart = temp;
   }
 
-  deleteCart(index: number) {
+  deletedCart(index: number) {
     // tslint:disable-next-line:variable-name
     Swal.fire({
       title: 'Thông Báo !',
@@ -62,14 +62,35 @@ export class CartComponent implements OnInit {
           'Đã Xoá Sản Phẩm Khỏi Giỏ Hàng.',
           'success'
         );
-        this.cartDetail.splice(index, 1);
-        this.getAll();
-        // this.totalPrice = this.cartService.getTotalPrice();
-        // this.totalQuantity = this.cartService.getTotalQuantity();
-        // this.dataService.changeData({
-        //   quantity: this.cartService.getTotalQuantity()
-        // });
+
       }
     });
+  }
+  deleteCart(id: number) {
+    for (const card of this.cartDetail) {
+      if (card.book.id === id) {
+        Swal.fire({
+          title: 'Thông Báo !',
+          text: 'Bạn Muốn Xoá Sản Phẩm Này Khỏi Giỏ Hàng ?!',
+          icon: 'warning',
+          showCancelButton: true,
+          confirmButtonColor: '#3085d6',
+          cancelButtonColor: '#d33',
+          confirmButtonText: 'Đồng Ý'
+        }).then((result: any) => {
+          if (result.isConfirmed) {
+            Swal.fire(
+              'Thông Báo !',
+              'Đã Xoá Sản Phẩm Khỏi Giỏ Hàng.',
+              'success'
+            );
+            this.cartDetail.splice(this.cartDetail.indexOf(card), 1);
+            localStorage.setItem('cart', JSON.stringify(this.cartDetail));
+            return;
+          }
+        });
+
+      }
+    }
   }
 }

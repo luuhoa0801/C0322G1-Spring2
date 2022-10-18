@@ -33,16 +33,15 @@
         <!--        </svg>-->
         <img type="button" routerLink="/cart" style="width: 6rem;height: 3rem;margin-bottom: 1rem"
              src="assets/img/cart.png">
-<!--        [routerLink]="['/cart']"-->
       </div>
-      <div class="row">
+      <form [formGroup]="formSearch" class="row" (submit)="search()">
         <div class="col-8" style="margin-left: 5rem;margin-top: 5px">
           <nav class="nav navbar-expand ">
-            <input type="search" class="form-control" name="name">
+            <input type="search" class="form-control" name="search" formControlName="search">
             <button class="btn btn-success" type="submit" style="margin-left: 5px">Search</button>
           </nav>
         </div>
-      </div>
+      </form>
     </div>
   </div>
   <div class="row" style="height: 40px;background-color:#157641">

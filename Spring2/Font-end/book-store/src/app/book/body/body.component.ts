@@ -24,6 +24,7 @@ export class BodyComponent implements OnInit {
   totalElements = 0;
   pageSize: number;
   numberOfElement: number;
+
   // phan quyen
   username: string;
   idPatient: number;
@@ -56,7 +57,6 @@ export class BodyComponent implements OnInit {
           this.totalElements = value.totalElements;
           this.bookList = value.content;
           this.numberOfElement = value.content.length;
-          console.log(value);
           if (value.first) {
             this.previousPageStyle = 'none';
           } else  {
@@ -67,7 +67,6 @@ export class BodyComponent implements OnInit {
           } else {
             this.nextPageStyle = 'inline-block';
           }
-          console.log(value)
         }, error => "lỗi")
         return;
       }
