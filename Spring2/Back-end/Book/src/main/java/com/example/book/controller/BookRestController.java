@@ -21,7 +21,6 @@ public class BookRestController {
     public ResponseEntity<Page<Book>> getCategoryVn(@RequestParam(defaultValue = "",required = false) String name,
                                                     @RequestParam(defaultValue = "0",required = false) Integer idCategory,
                                                     @PageableDefault(value = 8) Pageable pageable){
-//        Sort sort = Sort.by("view").descending();
         Page<Book> listVn = iBookService.FindAll(idCategory,name,pageable);
         if (listVn.isEmpty()){
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
