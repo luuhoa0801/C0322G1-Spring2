@@ -1,17 +1,11 @@
-package com.example.book.entity;
+package com.example.book.dTo;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.example.book.entity.Category;
 
-import javax.persistence.*;
+import javax.persistence.Column;
 import java.time.LocalDate;
-import java.util.Set;
 
-@Entity
-public class Book {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
-
+public class BookDto {
     private String code;
     private String name;
     private double price;
@@ -25,27 +19,17 @@ public class Book {
     private int quantity;
     private int totalPage;
     private LocalDate releaseDate;
+    private Category category;
 
     @Column(columnDefinition = "BIT(1) DEFAULT 0")
     private Boolean status;
 
-    @ManyToOne
-    @JoinColumn(name = "category_id",referencedColumnName = "id")
-    private Category category;
-
-    @OneToMany(mappedBy = "book")
-    @JsonIgnore
-    private Set<CartDetail> cartDetails;
-
-
-    public Book() {
+    public BookDto() {
     }
 
-    public Book(Integer id, String code, String name, double price, double discount, String author,
-                String description, String dimension, String translator, String publishingHome, String img,
-                int quantity, int totalPage, LocalDate releaseDate, Boolean status, Category category,
-                Set<CartDetail> cartDetails) {
-        this.id = id;
+    public BookDto(String code, String name, double price, double discount, String author, String description,
+                   String dimension, String translator, String publishingHome, String img, int quantity,
+                   int totalPage, LocalDate releaseDate, Category category, Boolean status) {
         this.code = code;
         this.name = name;
         this.price = price;
@@ -59,17 +43,8 @@ public class Book {
         this.quantity = quantity;
         this.totalPage = totalPage;
         this.releaseDate = releaseDate;
-        this.status = status;
         this.category = category;
-        this.cartDetails = cartDetails;
-    }
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
+        this.status = status;
     }
 
     public String getCode() {
@@ -94,6 +69,14 @@ public class Book {
 
     public void setPrice(double price) {
         this.price = price;
+    }
+
+    public double getDiscount() {
+        return discount;
+    }
+
+    public void setDiscount(double discount) {
+        this.discount = discount;
     }
 
     public String getAuthor() {
@@ -168,14 +151,6 @@ public class Book {
         this.releaseDate = releaseDate;
     }
 
-    public Boolean getStatus() {
-        return status;
-    }
-
-    public void setStatus(Boolean status) {
-        this.status = status;
-    }
-
     public Category getCategory() {
         return category;
     }
@@ -184,19 +159,11 @@ public class Book {
         this.category = category;
     }
 
-   public Set<CartDetail> getCartDetails() {
-        return cartDetails;
+    public Boolean getStatus() {
+        return status;
     }
 
-    public void setCartDetails(Set<CartDetail> cartDetails) {
-        this.cartDetails = cartDetails;
-    }
-
-    public double getDiscount() {
-        return discount;
-    }
-
-    public void setDiscount(double discount) {
-        this.discount = discount;
+    public void setStatus(Boolean status) {
+        this.status = status;
     }
 }
