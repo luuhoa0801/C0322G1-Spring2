@@ -5,7 +5,6 @@ import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
 import {HeaderComponent} from './header/header.component';
 import {FooterComponent} from './footer/footer.component';
-import {CartComponent} from './cart/cart.component';
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {HttpClientModule} from "@angular/common/http";
 import {SecurityModule} from "./security/security.module";
@@ -13,7 +12,9 @@ import {CartModule} from "./cart/cart.module";
 import {BookModule} from "./book/book.module";
 import {ToastrModule} from "ngx-toastr";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
-import {MatTooltipModule} from "@angular/material/tooltip";
+import {AngularFireModule} from "@angular/fire";
+import {AngularFirestoreModule} from "@angular/fire/firestore";
+import {environment} from "../environments/environment";
 
 @NgModule({
   declarations: [
@@ -39,7 +40,8 @@ import {MatTooltipModule} from "@angular/material/tooltip";
       progressAnimation: 'increasing',
       preventDuplicates: true
     }),
-
+    AngularFireModule.initializeApp(environment.firebaseConfig),
+    AngularFirestoreModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

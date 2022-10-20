@@ -10,7 +10,7 @@ import {Book} from "../model/book";
 export class CartService {
   cart: CartDetail[] = [];
 
-  constructor(private httpClient: HttpClient) {
+  constructor() {
   }
   addCard(book: Book, quantity: number) {
     let temp: CartDetail = {};

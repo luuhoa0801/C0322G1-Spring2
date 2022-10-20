@@ -1,8 +1,9 @@
 <div class="container my-5">
+
   <div class="row" *ngIf="cartDetail.length">
     <!-- Cart Start -->
-    <div class="container-fluid">
-      <div class="row px-xl-5">
+    <div class="container-fluid" >
+      <div class="row px-xl-5" >
         <div class="col-lg-8 table-responsive mb-5">
           <table class="table ">
             <thead class="thead-dark">
@@ -24,6 +25,7 @@
               <td class="align-middle">
                 <ul class="list-inline mt-3">
                   <li *ngIf="item.quantity>1"  class="list-inline-item" (click)="decCard(item.book )"><span class="btn btn-success" id="btn-minus1">-</span></li>
+
                   <li class="list-inline-item"><span style="width: 3.5rem" class="btn btn-success bg-secondary"
                                                      id="var-value1">{{item.quantity}}</span></li>
                   <li class="list-inline-item" (click)="incCard(item.book)"><span class="btn btn-success" id="btn-plus1">+</span></li>
@@ -68,19 +70,23 @@
                   <h5>{{money + totalCart |currency:'':'':'3.0'}} VNĐ</h5>
                 </div>
                 <div class="text-center">
-                  <button class="btn btn-block btn-success font-weight-bold my-3 py-3 ">Tiếp tục thanh toán</button>
+                  <button class="btn btn-block btn-success  my-3 " (click)="payment()">Thanh toán</button>
+                  <div id="paypal"></div>
                 </div>
               </div>
             </div>
           </div>
         </div>
       </div>
+
       <!-- Cart End -->
     </div>
   </div>
-  <div class="alert alert-danger" style="margin-top: 35px" *ngIf="cartDetail.length == 0">
+  <div class="alert alert-danger" style="margin-top: 35px" *ngIf="cartDetail.length === 0">
     <b>Chưa Có Sản Phẩm Nào trong Giỏ Hàng ! </b><a routerLink="">Click Vào Đây Để Mua Hàng</a>
   </div>
+
+
 </div>
 
 

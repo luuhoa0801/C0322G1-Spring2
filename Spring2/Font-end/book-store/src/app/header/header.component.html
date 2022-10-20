@@ -58,7 +58,7 @@
           </li>
           <li>SÁCH BÁN CHẠY</li>
           <li>CHƯƠNG TRÌNH KHUYẾN MÃI</li>
-          <li>GIẢM GIÁ ĐẶC BIỆT</li>
+          <li *ngIf="['ROLE_ADMIN'].indexOf(role)!==-1" type="button" routerLink="create">THÊM MỚI SÁCH</li>
         </ul>
       </div>
     </div>

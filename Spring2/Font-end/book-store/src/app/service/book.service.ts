@@ -18,7 +18,6 @@ export class BookService {
     }else {
       return this.http.get<any>(this.API_URL + '/list?idCategory=' + idCategory + '&name=@');
     }
-
   }
 
   getListBook(page: number): Observable<any> {
@@ -27,6 +26,11 @@ export class BookService {
 
   findById(id: number): Observable<any> {
     return this.http.get<any>(this.API_URL + '/list/show/' + id);
+  }
+
+
+  Create(book: Book): Observable<Book> {
+    return this.http.post<Book>(this.API_URL + '/create', book);
   }
 
 }

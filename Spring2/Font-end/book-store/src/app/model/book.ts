@@ -7,14 +7,15 @@ export interface Book {
   price?:number;
   discount?:number;
   author?:string;
-  description?:string;
-  dimension?:string;
-  translator?:string;
-  publishingHome?:string;
+  description?:string; //mo ta
+  dimension?:string;    //kich thuoc
+  translator?:string;    //dịch giả
+  publishingHome?:string;   //nhà xuat ban
   img?:string;
   quantity?:number;
   totalPage?:number;
   releaseDate?:string;
   category?: Category;
+  status?:boolean;
 }
 

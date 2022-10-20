@@ -1,7 +1,7 @@
 import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
 import {CartComponent} from "./cart.component";
-
+import { render } from 'creditcardpayments/creditCardPayments';
 
 const routes: Routes = [
   {
