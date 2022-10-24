@@ -40,6 +40,8 @@ import {environment} from "../environments/environment";
       progressAnimation: 'increasing',
       preventDuplicates: true
     }),
+
+    //firebase
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFirestoreModule,
   ],

@@ -2,6 +2,7 @@ import {Injectable} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs";
 import {Book} from "../model/book";
+import {Customer} from "../model/customer";
 
 @Injectable({
   providedIn: 'root'
@@ -41,5 +42,7 @@ export class BookService {
     // @ts-ignore
     return this.http.delete<any>(this.API_URL + '/delete/' + id);
   }
+
+
 
 }

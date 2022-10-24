@@ -85,47 +85,79 @@ export class UpdateComponent implements OnInit {
     })
   }
   submit() {
-    this.loader = false;
-    const nameImg = this.getCurrentDateTime() + this.selectedImage.name;
-    const filePath = `book/${nameImg}`;
-    const fileRef = this.storage.ref(filePath);
-    // const book = this.bookForm.value;
     let book: Book;
-    this.storage.upload(filePath, this.selectedImage).snapshotChanges().pipe(finalize(() => {
-        fileRef.getDownloadURL().subscribe((url) => {
-          this.bookForm.patchValue({img: url});
-          // @ts-ignore
-          // @ts-ignore
-          book = {
-            code: this.bookForm.value.code,
-            name: this.bookForm.value.name,
-            price: this.bookForm.value.price,
-            discount: this.bookForm.value.discount,
-            author: this.bookForm.value.author,
-            description: this.bookForm.value.description,
-            dimension: this.bookForm.value.dimension,
-            translator: this.bookForm.value.translator,
-            publishingHome: this.bookForm.value.publishingHome,
-            img: this.bookForm.value.img,
-            quantity: this.bookForm.value.quantity,
-            totalPage: this.bookForm.value.totalPage,
-            releaseDate: this.bookForm.value.releaseDate,
-            category: this.bookForm.value.category.id,
-            status: false,
+    if (this.editImageState === false){
+      book = {
+        code: this.bookForm.value.code,
+        name: this.bookForm.value.name,
+        price: this.bookForm.value.price,
+        discount: this.bookForm.value.discount,
+        author: this.bookForm.value.author,
+        description: this.bookForm.value.description,
+        dimension: this.bookForm.value.dimension,
+        translator: this.bookForm.value.translator,
+        publishingHome: this.bookForm.value.publishingHome,
+        img: this.bookForm.value.img,
+        quantity: this.bookForm.value.quantity,
+        totalPage: this.bookForm.value.totalPage,
+        releaseDate: this.bookForm.value.releaseDate,
+        category: this.bookForm.value.category.id,
+        status: false,
 
-          };
-          console.log(book);
-          this.bookService.updateBook(this.id,book).subscribe(() => {
-            this.bookForm.reset();
-            this.router.navigateByUrl('').then();
-            Swal.fire('Thông Báo !!', 'Chỉnh Sủa Thành Công', 'success').then();
-          }, e => {
-            Swal.fire('Thông Báo !!', 'Đã Có Lỗi Xảy Ra. Thêm Mới Thất Bại', 'error').then();
-            console.log(e);
+      };
+      console.log(book);
+      this.bookService.updateBook(this.id,book).subscribe(() => {
+        this.bookForm.reset();
+        this.router.navigateByUrl('').then();
+        Swal.fire('Thông Báo !!', 'Chỉnh Sủa Thành Công', 'success').then();
+      }, e => {
+        Swal.fire('Thông Báo !!', 'Đã Có Lỗi Xảy Ra. Thêm Mới Thất Bại', 'error').then();
+        console.log(e);
+      });
+    }else {
+      this.loader = false;
+      const nameImg = this.getCurrentDateTime() + this.selectedImage.name;
+      const filePath = `book/${nameImg}`;
+      const fileRef = this.storage.ref(filePath);
+      // const book = this.bookForm.value;
+
+      this.storage.upload(filePath, this.selectedImage).snapshotChanges().pipe(finalize(() => {
+          fileRef.getDownloadURL().subscribe((url) => {
+            this.bookForm.patchValue({img: url});
+            // @ts-ignore
+            // @ts-ignore
+            book = {
+              code: this.bookForm.value.code,
+              name: this.bookForm.value.name,
+              price: this.bookForm.value.price,
+              discount: this.bookForm.value.discount,
+              author: this.bookForm.value.author,
+              description: this.bookForm.value.description,
+              dimension: this.bookForm.value.dimension,
+              translator: this.bookForm.value.translator,
+              publishingHome: this.bookForm.value.publishingHome,
+              img: this.bookForm.value.img,
+              quantity: this.bookForm.value.quantity,
+              totalPage: this.bookForm.value.totalPage,
+              releaseDate: this.bookForm.value.releaseDate,
+              category: this.bookForm.value.category.id,
+              status: false,
+
+            };
+            console.log(book);
+            this.bookService.updateBook(this.id,book).subscribe(() => {
+              this.bookForm.reset();
+              this.router.navigateByUrl('').then();
+              Swal.fire('Thông Báo !!', 'Chỉnh Sủa Thành Công', 'success').then();
+            }, e => {
+              Swal.fire('Thông Báo !!', 'Đã Có Lỗi Xảy Ra. Thêm Mới Thất Bại', 'error').then();
+              console.log(e);
+            });
           });
-        });
-      })
-    ).subscribe();
+        })
+      ).subscribe();
+    }
+
   }
   compare(value, option): boolean {
     return value.id === option.id;
