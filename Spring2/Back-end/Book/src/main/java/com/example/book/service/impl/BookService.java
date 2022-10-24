@@ -17,7 +17,7 @@ public class BookService implements IBookService {
 
     @Override
     public Page<Book> FindAll(Integer idCategory, String name, Pageable pageable) {
-        return bookRepository.findAll(idCategory,"%" +name+"%",pageable);
+        return bookRepository.findAll(idCategory, "%" + name + "%", pageable);
     }
 
     @Override
@@ -27,12 +27,22 @@ public class BookService implements IBookService {
 
     @Override
     public void create(Book book) {
+        String code = bookRepository.getMaxCode();
+        int temp = Integer.parseInt(code.substring(2));
+        temp += 1;
+        code = "MS" + String.format("%03d", temp);
+        book.setCode(code);
         bookRepository.save(book);
     }
 
     @Override
     public void update(Book book) {
         bookRepository.save(book);
+    }
+
+    @Override
+    public void delete(int id) {
+        bookRepository.deleteBook(id);
     }
 
 }

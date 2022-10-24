@@ -15,6 +15,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Map;
 import java.util.Optional;
 
 @RestController
@@ -64,6 +65,11 @@ public class BookRestController {
 
         iBookService.update(books);
                 return new ResponseEntity<>(books, HttpStatus.OK);
+    }
 
+    @DeleteMapping ("/delete/{id}")
+    public ResponseEntity<Void> deleteExport(@PathVariable Integer id) {
+        iBookService.delete(id);
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 }

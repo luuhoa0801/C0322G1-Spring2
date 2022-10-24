@@ -16,7 +16,7 @@ import java.time.LocalDate;
 @Transactional
 public interface BookRepository extends JpaRepository<Book,Integer> {
 
-    @Query(value = "select * from book where category_id = :idCategory or name like :name order by id desc ",nativeQuery = true)
+    @Query(value = "select * from book where status = 0 and (category_id = :idCategory or name like :name)order by id desc ",nativeQuery = true)
     Page<Book> findAll(@Param("idCategory") Integer idCategory,@Param("name") String name, Pageable pageable);
 
     @Modifying
@@ -42,4 +42,11 @@ public interface BookRepository extends JpaRepository<Book,Integer> {
                 @Param("idCategory") Integer idCategory
     );
 
+    @Query(value = "select Max(code) from book",nativeQuery = true)
+    String getMaxCode();
+
+    @Transactional
+    @Modifying
+    @Query(value = "update book set status = 1 where id =:id",nativeQuery = true)
+    void deleteBook(@Param("id") Integer id );
 }
