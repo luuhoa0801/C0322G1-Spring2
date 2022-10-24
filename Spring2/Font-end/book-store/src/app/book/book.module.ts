@@ -13,10 +13,11 @@ import {MatInputModule} from "@angular/material/input";
 import {MatButtonModule} from "@angular/material/button";
 import {MatTooltipModule} from "@angular/material/tooltip";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
+import { UpdateComponent } from './update/update.component';
 
 
 @NgModule({
-  declarations: [BodyComponent,BookDetailComponent, CreateComponent],
+  declarations: [BodyComponent,BookDetailComponent, CreateComponent, UpdateComponent],
   imports: [
     CommonModule,
     BookRoutingModule,

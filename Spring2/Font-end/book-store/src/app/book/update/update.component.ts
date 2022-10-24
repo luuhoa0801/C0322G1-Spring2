@@ -1,39 +1,31 @@
 import {Component, OnInit} from '@angular/core';
 import {BookService} from "../../service/book.service";
 import {CategoryService} from "../../service/category.service";
-import {Router} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {Category} from "../../model/category";
-import {Book} from "../../model/book";
-import Swal from "sweetalert2";
 import {formatDate} from "@angular/common";
-import {AngularFireStorage} from '@angular/fire/storage';
+import {Book} from "../../model/book";
 import {finalize} from "rxjs/operators";
+import Swal from "sweetalert2";
+import {AngularFireStorage} from "@angular/fire/storage";
 
 @Component({
-  selector: 'app-create',
-  templateUrl: './create.component.html',
-  styleUrls: ['./create.component.css']
+  selector: 'app-update',
+  templateUrl: './update.component.html',
+  styleUrls: ['./update.component.css']
 })
-export class CreateComponent implements OnInit {
-
-  selectedImage: File = null;
-  checkImgSize = false;
-  regexImageUrl = false;
-  editImageState = false;
-  checkImg: boolean;
-  url: any;
-  msg = '';
-  loader = true;
+export class UpdateComponent implements OnInit {
 
   constructor(private bookService: BookService,
               private categoryService: CategoryService,
-              private storage: AngularFireStorage,
-              private router: Router) {
+              private router: Router,
+              private activatedRoute : ActivatedRoute,
+              private storage: AngularFireStorage) {
   }
 
   bookForm: FormGroup = new FormGroup({
-    // code: new FormControl(),
+    code: new FormControl(),
     name: new FormControl(),
     price: new FormControl(),
     discount: new FormControl(),
@@ -49,13 +41,34 @@ export class CreateComponent implements OnInit {
     category: new FormControl()
   });
   categoryList: Category[];
+  id: number;
+
+  selectedImage: File = null;
+  checkImgSize = false;
+  regexImageUrl = false;
+  editImageState = false;
+  checkImg: boolean;
+  url: any;
+  msg = '';
+  loader = true;
 
   ngOnInit(): void {
     this.categoryService.getAllCategory().subscribe(value => {
       this.categoryList = value;
+      this.activatedRoute.paramMap.subscribe(param => {
+        this.id = +param.get('id');
+        this.bookService.findById(this.id).subscribe(next =>{
+          this.bookForm.patchValue(next);
+          console.log(next)
+          this.bookForm.patchValue({category: next.category.id});
+          console.log(next)
+        })
+      })
+
     });
+
     this.bookForm = new FormGroup({
-      // code: new FormControl(),
+      code: new FormControl(),
       name: new FormControl('',[Validators.required,Validators.maxLength(100)]),
       price: new FormControl('',[Validators.required,Validators.min(1)]),
       discount: new FormControl('',[Validators.required,Validators.min(0)]),
@@ -71,7 +84,6 @@ export class CreateComponent implements OnInit {
       category: new FormControl('',[Validators.required])
     })
   }
-
   submit() {
     this.loader = false;
     const nameImg = this.getCurrentDateTime() + this.selectedImage.name;
@@ -85,7 +97,7 @@ export class CreateComponent implements OnInit {
           // @ts-ignore
           // @ts-ignore
           book = {
-            // code: this.bookForm.value.code,
+            code: this.bookForm.value.code,
             name: this.bookForm.value.name,
             price: this.bookForm.value.price,
             discount: this.bookForm.value.discount,
@@ -98,15 +110,15 @@ export class CreateComponent implements OnInit {
             quantity: this.bookForm.value.quantity,
             totalPage: this.bookForm.value.totalPage,
             releaseDate: this.bookForm.value.releaseDate,
-            category: this.bookForm.value.category,
+            category: this.bookForm.value.category.id,
             status: false,
 
           };
           console.log(book);
-          this.bookService.Create(book).subscribe(() => {
+          this.bookService.updateBook(this.id,book).subscribe(() => {
             this.bookForm.reset();
             this.router.navigateByUrl('').then();
-            Swal.fire('Thông Báo !!', 'Thêm Mới Thành Công', 'success').then();
+            Swal.fire('Thông Báo !!', 'Chỉnh Sủa Thành Công', 'success').then();
           }, e => {
             Swal.fire('Thông Báo !!', 'Đã Có Lỗi Xảy Ra. Thêm Mới Thất Bại', 'error').then();
             console.log(e);
@@ -114,6 +126,9 @@ export class CreateComponent implements OnInit {
         });
       })
     ).subscribe();
+  }
+  compare(value, option): boolean {
+    return value.id === option.id;
   }
 
   getCurrentDateTime(): string {
@@ -163,21 +178,6 @@ export class CreateComponent implements OnInit {
   }
 
   reset(){
-    this.bookForm = new FormGroup({
-      // code: new FormControl(),
-      name: new FormControl('',[Validators.required,Validators.maxLength(100)]),
-      price: new FormControl('',[Validators.required,Validators.min(1)]),
-      discount: new FormControl('',[Validators.required,Validators.min(0)]),
-      author: new FormControl('',[Validators.required,Validators.maxLength(100)]),
-      description: new FormControl('',[Validators.required,Validators.maxLength(100)]),
-      dimension: new FormControl('',[Validators.required,Validators.maxLength(100)]),
-      translator: new FormControl('',[Validators.required,Validators.maxLength(100)]),
-      publishingHome: new FormControl('',[Validators.required,Validators.maxLength(100)]),
-      img: new FormControl(),
-      quantity: new FormControl('',[Validators.required,Validators.min(1)]),
-      totalPage: new FormControl('',[Validators.required,Validators.min(1)]),
-      releaseDate: new FormControl('',[Validators.required]),
-      category: new FormControl('',[Validators.required])
-    })
+    this.ngOnInit()
   }
 }

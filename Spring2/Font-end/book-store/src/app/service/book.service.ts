@@ -15,7 +15,7 @@ export class BookService {
   getAll(idCategory: number, search: string): Observable<any> {
     if (idCategory == 0) {
       return this.http.get<any>(this.API_URL + '/list?name=' + search);
-    }else {
+    } else {
       return this.http.get<any>(this.API_URL + '/list?idCategory=' + idCategory + '&name=@');
     }
   }
@@ -31,6 +31,15 @@ export class BookService {
 
   Create(book: Book): Observable<Book> {
     return this.http.post<Book>(this.API_URL + '/create', book);
+  }
+
+  updateBook(id: number, book: Book): Observable<Book> {
+    return this.http.put<Book>(this.API_URL + '/update/' + id, book);
+  }
+
+  delete(id: number): Observable<any> {
+    // @ts-ignore
+    return this.http.delete<any>(this.API_URL + '/delete/' + id);
   }
 
 }

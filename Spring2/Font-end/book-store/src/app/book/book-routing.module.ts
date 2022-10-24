@@ -3,6 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 import {BodyComponent} from "./body/body.component";
 import {BookDetailComponent} from "./book-detail/book-detail.component";
 import {CreateComponent} from "./create/create.component";
+import {UpdateComponent} from "./update/update.component";
 
 
 const routes: Routes = [
@@ -17,7 +18,11 @@ const routes: Routes = [
   },
   { path: 'show/:id',
     component: BookDetailComponent
+  },
+  { path: 'update/:id',
+    component: UpdateComponent
   }
+
 ];
 
 @NgModule({

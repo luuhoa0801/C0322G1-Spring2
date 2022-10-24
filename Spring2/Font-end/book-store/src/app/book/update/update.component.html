@@ -2,15 +2,21 @@
   <div class="container py-5">
     <div class="row" >
       <div class="col-lg-2"></div>
-      <form class="col-lg-8"  [formGroup]="bookForm" (ngSubmit)="submit()">
+      <form class="col-lg-8"  [formGroup]="bookForm" (ngSubmit)="submit()" >
         <div class="mb-3 text-center">
-          <h2><b>Thêm Mới Sách</b></h2>
+          <h2><b>Chỉnh Sửa Sách</b></h2>
         </div>
         <hr>
         <div class="mx-4">
           <div class="row">
+            <div class="col-lg-6 d-grid">
+              <mat-form-field appearance="outline">
+                <mat-label>Tên Sách <span><i>(*)</i></span></mat-label>
+                <input matInput type="text"  formControlName="code"  readonly>
+              </mat-form-field>
+            </div>
 
-            <div class="col-lg-12 d-grid">
+            <div class="col-lg-6 d-grid">
               <mat-form-field appearance="outline">
                 <mat-label>Tên Sách <span><i>(*)</i></span></mat-label>
                 <input matInput type="text" placeholder="Nhập Tên Sách" formControlName="name" >
@@ -47,7 +53,6 @@
                 <mat-error *ngIf="bookForm.controls.translator.hasError('maxlength') && bookForm.controls.translator.touched" >
                   Vui lòng không nhập quá 100 kí tự.
                 </mat-error>
-
               </mat-form-field>
             </div>
           </div>
@@ -63,20 +68,18 @@
                 <mat-error *ngIf="bookForm.controls.dimension.hasError('min') && bookForm.controls.dimension.touched" >
                   Vui lòng nhập đúng định dạng không âm và lớn hơn 0.
                 </mat-error>
-
               </mat-form-field>
             </div>
             <div class="col-lg-6 d-grid">
               <mat-form-field appearance="outline">
                 <mat-label>Giá Sách <span><i>(*)</i></span></mat-label>
-                <input matInput type="number" placeholder="Nhập Giá Sách" formControlName="price" >
+                <input matInput type="text" placeholder="Nhập Giá Sách" formControlName="price" >
                 <mat-error *ngIf="bookForm.controls.price.hasError('required') && bookForm.controls.price.touched" >
                   Vui lòng không để trống.
                 </mat-error>
                 <mat-error *ngIf="bookForm.controls.price.hasError('min') && bookForm.controls.price.touched" >
-                  Vui lòng nhập giá không âm và lớn hơn 0.
+                  Vui lòng nhập đúng định dạng không âm và lớn hơn 0.
                 </mat-error>
-
               </mat-form-field>
             </div>
           </div>
@@ -101,7 +104,6 @@
                 <mat-error *ngIf="bookForm.controls.releaseDate.hasError('required') && bookForm.controls.releaseDate.touched" >
                   Vui lòng không để trống.
                 </mat-error>
-
               </mat-form-field>
             </div>
           </div>
@@ -110,29 +112,25 @@
             <div class="col-lg-6 d-grid">
               <mat-form-field appearance="outline">
                 <mat-label>Số Lượng <span><i>(*)</i></span></mat-label>
-                <input matInput type="number"  formControlName="quantity">
-
+                <input matInput type="text"  formControlName="quantity">
                 <mat-error *ngIf="bookForm.controls.quantity.hasError('required') && bookForm.controls.quantity.touched" >
                   Vui lòng không để trống.
                 </mat-error>
                 <mat-error *ngIf="bookForm.controls.quantity.hasError('min') && bookForm.controls.quantity.touched" >
                   Vui lòng nhập giá không âm và lớn hơn 0.
                 </mat-error>
-
               </mat-form-field>
             </div>
             <div class="col-lg-6 d-grid">
               <mat-form-field appearance="outline">
                 <mat-label>Tổng Số Trang <span><i>(*)</i></span></mat-label>
-                <input matInput type="number"  formControlName="totalPage">
-
+                <input matInput type="text"  formControlName="totalPage">
                 <mat-error *ngIf="bookForm.controls.totalPage.hasError('required') && bookForm.controls.totalPage.touched" >
                   Vui lòng không để trống.
                 </mat-error>
                 <mat-error *ngIf="bookForm.controls.totalPage.hasError('min') && bookForm.controls.totalPage.touched" >
                   Vui lòng nhập giá không âm và lớn hơn 0.
                 </mat-error>
-
               </mat-form-field>
             </div>
           </div>
@@ -141,8 +139,8 @@
             <div class="col-lg-6 d-grid">
               <mat-form-field appearance="outline">
                 <mat-label>Danh Mục <span><i>(*)</i></span></mat-label>
-                <mat-select formControlName="category">
-                  <mat-option *ngFor="let item of categoryList" [value]="item">{{item.name}}</mat-option>
+                <mat-select formControlName="category" >
+                  <mat-option *ngFor="let item of categoryList" [value]="item.id">{{item.name}}</mat-option>
                 </mat-select>
                 <mat-error *ngIf="bookForm.controls.category.hasError('required') && bookForm.controls.category.touched" >
                   Vui lòng không để trống.
@@ -153,8 +151,7 @@
             <div class="col-lg-6 d-grid">
               <mat-form-field appearance="outline">
                 <mat-label>Giảm giá <span><i>(*)</i></span></mat-label>
-                <input matInput type="number" placeholder="Nhập giảm giá"  formControlName="discount">
-
+                <input matInput type="text" placeholder="Nhập giảm giá"  formControlName="discount">
                 <mat-error *ngIf="bookForm.controls.discount.hasError('required') && bookForm.controls.discount.touched" >
                   Vui lòng không để trống.
                 </mat-error>
@@ -170,32 +167,29 @@
               <mat-form-field appearance="outline">
                 <mat-label>Mô Tả <span><i>(*)</i></span></mat-label>
                 <textarea matInput type="textarea" rows="5" formControlName="description" ></textarea>
-
                 <mat-error *ngIf="bookForm.controls.description.hasError('required') && bookForm.controls.description.touched" >
                   Vui lòng không để trống.
                 </mat-error>
-
               </mat-form-field>
             </div>
           </div>
 
-          <div class="mb-3">
-            <div class="row">
-              <div class="col-lg-12 d-grid image">
-                <label class="form-label text-start">Chọn Ảnh <span><i>(*)</i></span></label>
-                <!--                <img matTooltip="Nhấn Vào Đây Để Chọn Ảnh" *ngIf="!editImageState" src="https://cdn-icons-gif.flaticon.com/8121/8121335.gif" width="300px" height="300px" (click)="fileInput.click()">-->
-                <img matTooltip="Nhấn Vào Đây Để Chọn Ảnh" *ngIf="!editImageState" src="https://img.freepik.com/premium-vector/default-image-icon-vector-missing-picture-page-website-design-mobile-app-no-photo-available_87543-11093.jpg?w=996" width="300px" height="300px" (click)="fileInput.click()">
-                <input hidden (change)="selectFile($event); onFileSelected($event)" #fileInput type="file">
-                <!--                <img *ngIf="!editImageState" [src]="bookForm.get('image').value" width="100%" height="auto" alt="">-->
-                <img class="form-control mt-2" [src]="url" (click)="fileInput.click()" *ngIf="editImageState"
-                     width="auto" height="auto" alt="">
-                <div class="form-text" *ngIf="checkImgSize == true">Kích Thước Ảnh Quá Lớn.</div>
-                <div class="form-text" *ngIf="checkImg == true && checkImgSize == false && regexImageUrl == false">
-                  Vui Lòng Không Để Trống.
-                </div>
-                <div class="form-text" *ngIf="regexImageUrl == true && checkImgSize == false">
-                  Chỉ Chấp Nhận Ảnh Có Định Dạng .jpg / .JPG.
-                </div>
+          <div class="row mb-3">
+            <div class="col-lg-12 d-grid image">
+              <label class="form-label text-start">Chọn Ảnh <span><i>(*)</i></span></label>
+              <!--              <button type="button" mat-raised-button color="primary" (click)="fileInput.click()">Nhấn Vào Đây Để Thay Đổi Ảnh-->
+              <!--              </button>-->
+              <!--              <img matTooltip="Nhấn Vào Đây Để Chọn Ảnh" *ngIf="!editImageState" src="https://cdn-icons-gif.flaticon.com/8121/8121335.gif" width="300px" height="300px" (click)="fileInput.click()">-->
+              <input hidden (change)="selectFile($event); onFileSelected($event)" #fileInput type="file">
+              <img *ngIf="!editImageState" [src]="bookForm.get('img').value" (click)="fileInput.click()" width="100%"
+                   height="auto" alt="">
+              <img class="form-control mt-2" [src]="url" *ngIf="editImageState" (click)="fileInput.click()" width="auto" height="auto" alt="">
+              <div class="form-text" *ngIf="checkImgSize == true">Kích Thước Ảnh Quá Lớn.</div>
+              <div class="form-text" *ngIf="checkImg == true && checkImgSize == false && regexImageUrl == false">
+                Vui Lòng Không Để Trống.
+              </div>
+              <div class="form-text" *ngIf="regexImageUrl == true && checkImgSize == false">
+                Chỉ Chấp Nhận Ảnh Có Định Dạng .jpg / .JPG.
               </div>
             </div>
           </div>
@@ -204,10 +198,10 @@
             <a routerLink="">
               <button mat-raised-button color="warn"> Quay Lại</button>
             </a>
-            <button  type="submit" mat-raised-button color="primary" [disabled]="!bookForm.valid"
-                    > Thêm mới
+            <button  mat-raised-button color="primary" [disabled]="!bookForm.valid" >
+              Chỉnh Sửa
             </button>
-            <button  type="reset" mat-raised-button color="accent" (click)="reset()"> Nhập Lại
+            <button  type="reset" mat-raised-button color="accent" (click)="reset()" > Nhập Lại
             </button>
           </div>
         </div>

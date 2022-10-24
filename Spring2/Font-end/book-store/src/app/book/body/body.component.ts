@@ -113,10 +113,32 @@ export class BodyComponent implements OnInit {
     }
     this.isLoggedIn = this.username != null;
   }
-
+  // thêm vào giỏ hàng
   addCart(item: Book) {
     this.cartService.addCard(item, 1);
     Swal.fire('Thông báo', 'Thêm vào giỏ hàng thành công', 'success');
 
+  }
+
+  delete(id: number, name: string, author: string): void {
+    Swal.fire({
+      title: 'Thông Báo !!',
+      text: 'Bạn Muốn Xoá Sách ' + name + ' Của Tác Giả ' + author + ' Không ?!',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3F51B5',
+      cancelButtonColor: '#F44336',
+      confirmButtonText: 'Đồng Ý'
+    }).then((result: any) => {
+      if (result.isConfirmed) {
+        this.bookService.delete(id).subscribe(() => {
+          Swal.fire('Thông Báo !!', 'Xoá Thành Công', 'success').then();
+          this.getList()
+        }, e => {
+          Swal.fire('Thông Báo !!', 'Đã Có Lỗi Xảy Ra. Vui Lòng Thử Lại', 'error').then();
+          console.log(e);
+        });
+      }
+    });
   }
 }

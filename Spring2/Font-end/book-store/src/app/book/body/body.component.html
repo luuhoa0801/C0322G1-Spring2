@@ -11,10 +11,10 @@
                 class="fa fa-shopping-cart"></i></a>
               <a [routerLink]="['/show',item.id]" class="btn btn-light btn-square" matTooltip="Thông tin chi tiết"><i
                 class="fa fa-info"></i></a>
-              <a class="btn btn-light btn-square" *ngIf="['ROLE_ADMIN'].indexOf(role)!==-1" matTooltip="Chỉnh sửa thông tin"><i
+              <a class="btn btn-light btn-square" *ngIf="['ROLE_ADMIN'].indexOf(role)!==-1" [routerLink]="['/update',item.id]" matTooltip="Chỉnh sửa thông tin"><i
                 class="fa fa-edit"></i></a>
               <a class="btn btn-light btn-square " *ngIf="['ROLE_ADMIN'].indexOf(role)!==-1" matTooltip="Xóa sách"
-                 data-target="#deleteModal"><i class="fa fa-trash"></i></a>
+                 (click)="delete(item.id,item.name,item.author)" ><i class="fa fa-trash"></i></a>
             </div>
           </div>
 
