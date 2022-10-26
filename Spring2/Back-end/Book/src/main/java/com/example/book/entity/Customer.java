@@ -1,10 +1,11 @@
 package com.example.book.entity;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.List;
+import java.util.Set;
 
 @Entity
 public class Customer {
@@ -25,14 +26,15 @@ public class Customer {
     @JoinColumn(name = "app_user_id", referencedColumnName = "id")
     private AppUser appUser;
 
-    @OneToOne(mappedBy = "customer")
-    private Cart cart;
+    @OneToMany(mappedBy = "customer")
+    @JsonIgnore
+    private Set<Cart> carts;
 
     public Customer() {
     }
 
-    public Customer(Integer id, String name, String address, LocalDate birthDay, String email, int phone, int gender,
-                    boolean status, AppUser appUser, Cart cart) {
+    public Customer(Integer id, String name, String address, LocalDate birthDay, String email, int phone,
+                    int gender, boolean status, AppUser appUser, Set<Cart> carts) {
         this.id = id;
         this.name = name;
         this.address = address;
@@ -42,7 +44,7 @@ public class Customer {
         this.gender = gender;
         this.status = status;
         this.appUser = appUser;
-        this.cart = cart;
+        this.carts = carts;
     }
 
     public Integer getId() {
@@ -117,11 +119,11 @@ public class Customer {
         this.appUser = appUser;
     }
 
-    public Cart getCart() {
-        return cart;
+    public Set<Cart> getCarts() {
+        return carts;
     }
 
-    public void setCart(Cart cart) {
-        this.cart = cart;
+    public void setCarts(Set<Cart> carts) {
+        this.carts = carts;
     }
 }

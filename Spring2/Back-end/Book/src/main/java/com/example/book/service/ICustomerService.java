@@ -8,4 +8,6 @@ public interface ICustomerService {
     Customer findByUsername(String username);
 
     List<Customer> findAll();
+
+    Customer findHistoryByUsername(String username);
 }

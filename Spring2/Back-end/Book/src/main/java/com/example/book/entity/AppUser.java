@@ -27,7 +27,6 @@ public class AppUser {
     @Column(columnDefinition = "BIT(1) DEFAULT 0")
     private Boolean status;
 
-
     @JsonIgnore
     @OneToOne(mappedBy = "appUser")
     private Customer customer;
@@ -39,8 +38,8 @@ public class AppUser {
     public AppUser() {
     }
 
-    public AppUser(Integer id, String username, String password, String email, LocalDate creationDate, Boolean status,
-                   Customer customer, List<UserRole> userRoles) {
+    public AppUser(Integer id, String username, String password, String email, LocalDate creationDate,
+                   Boolean status, Customer customer, List<UserRole> userRoles) {
         this.id = id;
         this.username = username;
         this.password = password;
@@ -50,6 +49,7 @@ public class AppUser {
         this.customer = customer;
         this.userRoles = userRoles;
     }
+
 
     public Integer getId() {
         return id;
@@ -91,14 +91,6 @@ public class AppUser {
         this.creationDate = creationDate;
     }
 
-    public Boolean getStatus() {
-        return status;
-    }
-
-    public void setStatus(Boolean status) {
-        this.status = status;
-    }
-
     public Customer getCustomer() {
         return customer;
     }
@@ -113,5 +105,13 @@ public class AppUser {
 
     public void setUserRoles(List<UserRole> userRoles) {
         this.userRoles = userRoles;
+    }
+
+    public Boolean getStatus() {
+        return status;
+    }
+
+    public void setStatus(Boolean status) {
+        this.status = status;
     }
 }

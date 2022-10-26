@@ -14,8 +14,8 @@ public class Cart {
     @Column(columnDefinition = "BIT(1) DEFAULT 0")
     private boolean status;
 
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "customer_id", referencedColumnName = "id")
+    @ManyToOne()
+    @JoinColumn(name = "customer_id",referencedColumnName = "id")
     private Customer customer;
 
     public Cart() {
