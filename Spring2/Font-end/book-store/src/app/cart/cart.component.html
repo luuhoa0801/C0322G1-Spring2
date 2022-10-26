@@ -1,4 +1,4 @@
-<div class="container my-5">
+ <div class="container my-5">
 
   <div class="row" *ngIf="cartDetail.length">
     <!-- Cart Start -->
@@ -44,16 +44,21 @@
             </tbody>
           </table>
         </div>
+
         <div class="col-lg-4">
           <div style="margin-top: 0.5rem">
             <div class="example-container" >
-              <div class="w-100" style="display: flex">
-                <p style="margin: 0;font-size: 1.3rem;font-weight: 600">Mã Giảm Giá :</p>
-                <input  style="margin-left: 0.3rem;border-radius: 5px" type="text"  placeholder="Mã Giảm Giá">
+              <div class="w-100" >
+<!--                <p style="margin: 0;font-size: 1.3rem;font-weight: 600">Mã Giảm Giá :</p>-->
+<!--                <input  style="margin-left: 0.3rem;border-radius: 5px" type="text"  placeholder="Mã Giảm Giá">-->
+                <mat-form-field appearance="outline" class="w-100" style="padding: 0;margin: 0">
+                  <mat-label>Mã giảm giá </mat-label>
+                  <input matInput type="number"  >
+                </mat-form-field>
               </div>
             </div>
 
-            <div class="bg-light p-30 mb-5" style="margin-top: 1.5rem">
+            <div class=" p-30 mb-5" >
               <div class="border-bottom pb-2">
                 <div class="d-flex justify-content-between mb-3">
                   <h5>Tổng tiền</h5>

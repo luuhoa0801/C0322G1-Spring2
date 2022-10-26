@@ -91,7 +91,6 @@ export class BodyComponent implements OnInit {
     });
   }
 
-
   previousPage() {
     this.page--;
     this.getList();
@@ -102,8 +101,6 @@ export class BodyComponent implements OnInit {
     this.getList();
   }
 
-
-
   // phanquyen
   loadEditAdd(): void {
     if (this.tokenStorageService.getToken()) {
@@ -113,6 +110,7 @@ export class BodyComponent implements OnInit {
     }
     this.isLoggedIn = this.username != null;
   }
+
   // thêm vào giỏ hàng
   addCart(item: Book) {
     this.cartService.addCard(item, 1);

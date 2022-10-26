@@ -6,6 +6,7 @@ import {CartService} from "../service/cart.service";
 import Swal from "sweetalert2";
 import {Router} from "@angular/router";
 import {render} from "creditcardpayments/creditCardPayments";
+import {TokenStorageService} from "../service/token-storage.service";
 
 @Component({
   selector: 'app-cart',
@@ -21,7 +22,9 @@ export class CartComponent implements OnInit {
 
 
   constructor(private cartService: CartService,
-              private router: Router) {
+              private router: Router,
+              private tokenStorageService: TokenStorageService,
+              private cartDetailService: CartDetailService) {
     // render(
     //   {
     //     id: "#myPaypalButtons",
@@ -72,14 +75,16 @@ export class CartComponent implements OnInit {
 
   payment() {
     document.getElementById('paypal').innerHTML = '<div id="btnPayPal"></div>';
+    const username = this.tokenStorageService.getUser().username;
     render({
       id: '#paypal',
       currency: 'USD',
       value: String((this.totalCart / 23000).toFixed(2)),
       onApprove: (details) => {
+        this.cartDetailService.saveCartDetail(username,this.cartDetail).subscribe();
         Swal.fire({
           title: 'Thanh Toán Thành Công',
-          text: 'Sách Của Bạn Sẽ Được Giao Trong Vòng 3 Ngày Tới',
+          // text: 'Sách Của Bạn Sẽ Được Giao Trong Vòng 3 Ngày Tới',
           icon: 'success',
           iconColor: 'success',
         });

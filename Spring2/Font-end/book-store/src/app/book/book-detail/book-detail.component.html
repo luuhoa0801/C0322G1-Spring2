@@ -80,7 +80,7 @@
                       <button [routerLink]="['/']" type="submit" class="btn btn-success btn-lg" name="submit" value="buy">Quay lại</button>
                   </div>
                   <div class="col d-grid">
-                    <button [routerLink]="['/cart']" (click)="addCart()" class="btn btn-success btn-lg" name="submit" value="addtocard" >Thêm vào giỏ hàng
+                    <button *ngIf="['ROLE_USER'].indexOf(role)!==-1" [routerLink]="['/cart']" (click)="addCart()" class="btn btn-success btn-lg" name="submit" value="addtocard" >Thêm vào giỏ hàng
                     </button>
                   </div>
                 </div>

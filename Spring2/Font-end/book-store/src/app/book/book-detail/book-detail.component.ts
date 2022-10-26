@@ -7,6 +7,8 @@ import {ActivatedRoute, ParamMap} from "@angular/router";
 import {Title} from "@angular/platform-browser";
 import {CartService} from "../../service/cart.service";
 import Swal from "sweetalert2";
+import {TokenStorageService} from "../../service/token-storage.service";
+import {ShareService} from "../../service/share.service";
 
 @Component({
   selector: 'app-book-detail',
@@ -20,21 +22,43 @@ export class BookDetailComponent implements OnInit {
   id: number;
   number = 1;
 
+  // phan quyen
+  username: string;
+  idPatient: number;
+  currentUser: string;
+  role: string;
+  isLoggedIn = false;
+
   constructor(private bookService: BookService,
               private categoryService: CategoryService,
               private activatedRoute: ActivatedRoute,
               private title: Title,
-              private cartService: CartService) {
+              private cartService: CartService,
+              private tokenStorageService: TokenStorageService,
+              private shareService: ShareService,) {
     this.title.setTitle('Chi Tiết Sách');
     this.activatedRoute.paramMap.subscribe((paramMap: ParamMap) => {
       this.id = +paramMap.get('id');
       this.getDetail(this.id);
       console.log(this.id)
     });
+    this.shareService.getClickEvent().subscribe(() => {
+      this.loadEditAdd();
+    });
   }
 
   ngOnInit(): void {
+    this.loadEditAdd();
     this.getCategory();
+  }
+  // phanquyen
+  loadEditAdd(): void {
+    if (this.tokenStorageService.getToken()) {
+      this.currentUser = this.tokenStorageService.getUser().username;
+      this.role = this.tokenStorageService.getUser().roles[0];
+      this.username = this.tokenStorageService.getUser().username;
+    }
+    this.isLoggedIn = this.username != null;
   }
 
   getDetail(id: number) {

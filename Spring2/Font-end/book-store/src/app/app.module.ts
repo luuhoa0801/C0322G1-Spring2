@@ -15,6 +15,7 @@ import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {AngularFireModule} from "@angular/fire";
 import {AngularFirestoreModule} from "@angular/fire/firestore";
 import {environment} from "../environments/environment";
+import {CardDetailModule} from "./card-detail/card-detail.module";
 
 @NgModule({
   declarations: [
@@ -31,6 +32,7 @@ import {environment} from "../environments/environment";
     FormsModule,
     SecurityModule,
     CartModule,
+    CardDetailModule,
     BookModule,
     BrowserAnimationsModule,
     ToastrModule.forRoot({

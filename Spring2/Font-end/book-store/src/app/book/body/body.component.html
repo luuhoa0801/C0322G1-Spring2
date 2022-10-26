@@ -6,7 +6,7 @@
           <div class="product-img position-relative overflow-hidden">
             <img style="height: 22rem" class=" img-fluid w-100 card-img-top" [src]="item.img">
             <div class="product-action">
-              <a class="btn btn-light btn-square" (click)="addCart(item)"
+              <a class="btn btn-light btn-square" *ngIf="['ROLE_USER'].indexOf(role)!==-1" (click)="addCart(item)"
                    matTooltip="Thêm vào giỏ hàng"><i
                 class="fa fa-shopping-cart"></i></a>
               <a [routerLink]="['/show',item.id]" class="btn btn-light btn-square" matTooltip="Thông tin chi tiết"><i

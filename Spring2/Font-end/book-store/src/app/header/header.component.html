@@ -3,14 +3,14 @@
     <div class="col-6 align-items-center justify-content-center "
          style="display: flex;gap:1rem;font-size: 1rem;margin: 0 auto;color: #076a3c">
       <div> Giới thiệu</div>
-      <div> Lịch sử giao dịch</div>
+      <div ><a routerLink="/cartDetail" style="color:#076a3c ">Lịch sử giao dịch</a> </div>
       <div> Kiểm tra đơn hàng</div>
     </div>
     <div class="col-6">
       <div class="col-2"></div>
       <div class="col-8 align-items-center justify-content-center"
            style="display: flex;gap: 0.9rem;font-size: 1rem;margin:6px auto;color:#076a3c" [hidden]="isLoggedIn">
-        <div type="button" style="color: #076a3c" routerLink="/register"> Đăng ký</div>
+        <div type="button" style="color: #076a3c" > Đăng ký</div>
         <div type="button" style="color:#076a3c" routerLink="/login"> Đăng Nhập</div>
       </div>
       <div class="col-8 align-items-center justify-content-center"
