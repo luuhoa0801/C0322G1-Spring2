@@ -7,6 +7,7 @@ import Swal from "sweetalert2";
 import {Router} from "@angular/router";
 import {render} from "creditcardpayments/creditCardPayments";
 import {TokenStorageService} from "../service/token-storage.service";
+import {Title} from "@angular/platform-browser";
 
 @Component({
   selector: 'app-cart',
@@ -24,7 +25,9 @@ export class CartComponent implements OnInit {
   constructor(private cartService: CartService,
               private router: Router,
               private tokenStorageService: TokenStorageService,
-              private cartDetailService: CartDetailService) {
+              private cartDetailService: CartDetailService,
+              private title : Title) {
+    this.title.setTitle('Giỏ hàng')
     // render(
     //   {
     //     id: "#myPaypalButtons",
@@ -39,16 +42,21 @@ export class CartComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.getAll();
+    if (this.tokenStorageService.getUser()){
+      this.cartDetailService.getCart(this.tokenStorageService.getUser().username).subscribe(value => {
+        this.cartDetail = value;
+        localStorage.setItem('cart',JSON.stringify(this.cartDetail));
+        this.resultTotal();
+      });
+    }
   }
 
   getAll() {
     this.cartDetail = JSON.parse(localStorage.getItem('cart'));
-    if (this.cartDetail === null){
+    if (this.cartDetail === null) {
       this.cartDetail = [];
     }
     this.resultTotal();
-
   }
 
   decCard(item: Book) {
@@ -81,7 +89,11 @@ export class CartComponent implements OnInit {
       currency: 'USD',
       value: String((this.totalCart / 23000).toFixed(2)),
       onApprove: (details) => {
-        this.cartDetailService.saveCartDetail(username,this.cartDetail).subscribe();
+        this.cartDetailService.saveCartDetail(username, this.cartDetail).subscribe(() => {
+          this.cartDetailService.saveCart(username,[]).subscribe();
+          }
+
+        );
         Swal.fire({
           title: 'Thanh Toán Thành Công',
           // text: 'Sách Của Bạn Sẽ Được Giao Trong Vòng 3 Ngày Tới',
@@ -118,7 +130,9 @@ export class CartComponent implements OnInit {
             );
             this.cartDetail.splice(this.cartDetail.indexOf(card), 1);
             localStorage.setItem('cart', JSON.stringify(this.cartDetail));
-            return;
+            this.cartDetailService.saveCart(this.tokenStorageService.getUser().username, this.cartDetail).subscribe(value => {
+              return;
+            })
           }
         });
 

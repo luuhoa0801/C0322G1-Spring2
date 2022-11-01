@@ -6,6 +6,7 @@ import {TokenStorageService} from "../../service/token-storage.service";
 import {AuthService} from "../../service/auth.service";
 import {ShareService} from "../../service/share.service";
 import Swal from 'sweetalert2';
+import {Title} from "@angular/platform-browser";
 
 @Component({
   selector: 'app-login',
@@ -25,11 +26,14 @@ export class LoginComponent implements OnInit {
               private router: Router,
               private route: ActivatedRoute,
               private toastr: ToastrService,
-              private shareService: ShareService
+              private shareService: ShareService,
+              private title: Title
   ) {
+    this.title.setTitle('Đăng nhập')
   }
 
   ngOnInit(): void {
+
     this.returnUrl = this.route.snapshot.queryParams.returnUrl || '';
     this.formGroup = this.formBuild.group({
         username: [''],

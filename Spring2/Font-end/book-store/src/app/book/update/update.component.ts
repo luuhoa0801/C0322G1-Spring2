@@ -9,6 +9,7 @@ import {Book} from "../../model/book";
 import {finalize} from "rxjs/operators";
 import Swal from "sweetalert2";
 import {AngularFireStorage} from "@angular/fire/storage";
+import {Title} from "@angular/platform-browser";
 
 @Component({
   selector: 'app-update',
@@ -21,7 +22,9 @@ export class UpdateComponent implements OnInit {
               private categoryService: CategoryService,
               private router: Router,
               private activatedRoute : ActivatedRoute,
-              private storage: AngularFireStorage) {
+              private storage: AngularFireStorage,
+              private title: Title) {
+    this.title.setTitle('Chỉnh sửa sách')
   }
 
   bookForm: FormGroup = new FormGroup({

@@ -7,6 +7,7 @@ import {TokenStorageService} from "../../service/token-storage.service";
 import {ShareService} from "../../service/share.service";
 import {CartService} from "../../service/cart.service";
 import Swal from "sweetalert2";
+import {Title} from "@angular/platform-browser";
 
 @Component({
   selector: 'app-body',
@@ -38,7 +39,9 @@ export class BodyComponent implements OnInit {
               private toast: ToastrService,
               private tokenStorageService: TokenStorageService,
               private shareService: ShareService,
-              private cartService: CartService) {
+              private cartService: CartService,
+              private title: Title) {
+    this.title.setTitle('BookStore')
     this.shareService.getClickEvent().subscribe(() => {
       this.loadEditAdd();
     });

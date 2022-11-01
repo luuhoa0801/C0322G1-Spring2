@@ -9,6 +9,7 @@ import Swal from "sweetalert2";
 import {formatDate} from "@angular/common";
 import {AngularFireStorage} from '@angular/fire/storage';
 import {finalize} from "rxjs/operators";
+import {Title} from "@angular/platform-browser";
 
 @Component({
   selector: 'app-create',
@@ -29,7 +30,9 @@ export class CreateComponent implements OnInit {
   constructor(private bookService: BookService,
               private categoryService: CategoryService,
               private storage: AngularFireStorage,
-              private router: Router) {
+              private router: Router,
+              private title:Title) {
+    this.title.setTitle('Thêm mới sách')
   }
 
   bookForm: FormGroup = new FormGroup({

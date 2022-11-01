@@ -6,6 +6,7 @@ import {CartDetail} from "../model/cartDetail";
 import {TokenStorageService} from "../service/token-storage.service";
 import {History} from "../model/history";
 import {Cart} from "../model/cart";
+import {Title} from "@angular/platform-browser";
 
 @Component({
   selector: 'app-card-detail',
@@ -20,7 +21,9 @@ export class CardDetailComponent implements OnInit {
 
   constructor(private cartDetailService: CartDetailService,
               private router: Router,
-              private tokenStorageService: TokenStorageService) {
+              private tokenStorageService: TokenStorageService,
+              private title: Title) {
+    this.title.setTitle('Lịch sử mua hàng')
   }
 
   ngOnInit(): void {

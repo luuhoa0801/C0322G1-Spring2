@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {TokenStorageService} from "../../service/token-storage.service";
 import {CustomerService} from "../../service/customer.service";
+import {Title} from "@angular/platform-browser";
 
 @Component({
   selector: 'app-detail',
@@ -14,7 +15,9 @@ export class DetailComponent implements OnInit {
   users: any = [];
 
   constructor(private tokenStorageService: TokenStorageService,
-              private customerService: CustomerService) {
+              private customerService: CustomerService,
+              private title: Title) {
+    this.title.setTitle('Thông tin tài khoản')
   }
 
   ngOnInit(): void {

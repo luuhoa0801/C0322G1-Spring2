@@ -14,11 +14,18 @@ export class CartDetailService {
   }
 
   saveCartDetail(username: string, cartDetail: CartDetail[]) {
-    return this.httpClient.post(this.API_URL + '/savecart/' + username, cartDetail);
+    return this.httpClient.post(this.API_URL + '/saveHistory/' + username, cartDetail);
   }
 
   getHistory(username: string): Observable<History> {
     return this.httpClient.get<History>(this.API_URL + '/history/' + username);
+  }
 
+  saveCart(username: string, cartDetail: CartDetail[]) {
+    return this.httpClient.post(this.API_URL + '/saveCart/' + username, cartDetail);
+  }
+
+  getCart(username: string): Observable<CartDetail[]> {
+    return this.httpClient.get<CartDetail[]>(this.API_URL + '/cart/' + username);
   }
 }
