@@ -107,8 +107,8 @@ public class BookRestController {
         return new ResponseEntity<>(customers, HttpStatus.OK);
     }
 
-    @PostMapping("savecart/{username}")
-    public ResponseEntity<List<CartDetailDto>> saveCart(@PathVariable String username, @RequestBody List<CartDetailDto> list) {
+    @PostMapping("saveHistory/{username}")
+    public ResponseEntity<List<CartDetailDto>> saveHistory(@PathVariable String username, @RequestBody List<CartDetailDto> list) {
         Customer customer = iCustomerService.findByUsername(username);
         Cart cart = new Cart();
         cart.setDateCreate(LocalDate.now());
@@ -128,7 +128,7 @@ public class BookRestController {
     public ResponseEntity<HistoryDto> getHistory(@PathVariable String username) {
         HistoryDto historyDto = new HistoryDto();
         Customer customer = iCustomerService.findHistoryByUsername(username);
-        BeanUtils.copyProperties(customer,historyDto);
+        BeanUtils.copyProperties(customer, historyDto);
         List<Cart> cartList = cartService.findByCustomerId(historyDto.getId());
         List<CartDto> cartDtoList = new LinkedList<>();
         for (Cart cart : cartList) {
@@ -138,11 +138,47 @@ public class BookRestController {
         for (CartDto cart : historyDto.getCartList()) {
             List<CartDetail> cartDetailList = iCartDetailService.findCartDetail(cart.getId());
             List<CartDetailDto> cartDetailDtoList = new LinkedList<>();
-            for (CartDetail cartDetail: cartDetailList) {
-                cartDetailDtoList.add(new CartDetailDto(cartDetail.getQuantity(),cartDetail.getBook()));
+            for (CartDetail cartDetail : cartDetailList) {
+                cartDetailDtoList.add(new CartDetailDto(cartDetail.getQuantity(), cartDetail.getBook()));
             }
             cart.setCartDetailList(cartDetailDtoList);
         }
         return new ResponseEntity<>(historyDto, HttpStatus.OK);
     }
+
+    @PostMapping("saveCart/{username}")
+    public ResponseEntity<List<CartDetailDto>> saveCart(@PathVariable String username, @RequestBody List<CartDetailDto> list) {
+        Customer customer = iCustomerService.findByUsername(username);
+        Cart cart = cartService.findCart(customer.getId());
+        if (cart == null) {
+            cart = new Cart();
+            cart.setDateCreate(LocalDate.now());
+            cart.setCustomer(customer);
+            cart.setStatus(true);
+            cart = cartService.save(cart);
+        } else {
+            iCartDetailService.deleteCartDetailByCartId(cart.getId());
+        }
+        for (CartDetailDto item : list) {
+            CartDetail cartDetail = new CartDetail();
+            cartDetail.setCart(cart);
+            cartDetail.setBook(item.getBook());
+            cartDetail.setQuantity(item.getQuantity());
+            iCartDetailService.save(cartDetail);
+        }
+        return new ResponseEntity<>(null, HttpStatus.CREATED);
+    }
+
+    @GetMapping("cart/{username}")
+    public ResponseEntity<List<CartDetailDto>> getCart(@PathVariable String username) {
+        Customer customer = iCustomerService.findHistoryByUsername(username);
+        Cart cartList = cartService.findCart(customer.getId());
+        List<CartDetail> cartDetailList = iCartDetailService.findCartDetail(cartList.getId());
+        List<CartDetailDto> cartDetailDtoList = new LinkedList<>();
+        for (CartDetail cartDetail : cartDetailList) {
+            cartDetailDtoList.add(new CartDetailDto(cartDetail.getQuantity(), cartDetail.getBook()));
+        }
+        return new ResponseEntity<>(cartDetailDtoList, HttpStatus.OK);
+    }
+
 }
