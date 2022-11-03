@@ -77,6 +77,11 @@ public class UserService implements IUserService {
     }
 
     @Override
+    public Integer findMaxId() {
+        return userRepository.findMaxId();
+    }
+
+    @Override
     public Optional<AppUser> findById(Integer id) {
         return userRepository.findById(id);
     }

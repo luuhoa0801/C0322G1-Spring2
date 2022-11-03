@@ -10,7 +10,7 @@
       <div class="col-2"></div>
       <div class="col-8 align-items-center justify-content-center"
            style="display: flex;gap: 0.9rem;font-size: 1rem;margin:6px auto;color:#076a3c" [hidden]="isLoggedIn">
-        <div type="button" style="color: #076a3c" > Đăng ký</div>
+        <div type="button" style="color: #076a3c" routerLink="/customer/create" > Đăng ký</div>
         <div type="button" style="color:#076a3c" routerLink="/login"> Đăng Nhập</div>
       </div>
       <div class="col-8 align-items-center justify-content-center"
@@ -56,7 +56,7 @@
                   class="text-uppercase">{{item.name}}</li>
             </ul>
           </li>
-          <li>SÁCH BÁN CHẠY</li>
+          <li type="button" routerLink="/topBook">SÁCH BÁN CHẠY</li>
           <li>CHƯƠNG TRÌNH KHUYẾN MÃI</li>
           <li *ngIf="['ROLE_ADMIN'].indexOf(role)!==-1" type="button" routerLink="create">THÊM MỚI SÁCH</li>
         </ul>

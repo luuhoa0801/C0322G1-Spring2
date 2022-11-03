@@ -13,7 +13,7 @@ import java.util.Optional;
 
 @Repository
 @Transactional
-public interface UserRepository extends JpaRepository<AppUser,Integer> {
+public interface UserRepository extends JpaRepository<AppUser, Integer> {
 
     @Query(value = "select * from app_user a where a.username = :name and status = 0", nativeQuery = true)
     AppUser findAppUserByName(@Param("name") String name);
@@ -25,7 +25,6 @@ public interface UserRepository extends JpaRepository<AppUser,Integer> {
     @Query(value = "update app_user set password =?1 where username = ?2", nativeQuery = true)
     void saveNewPassword(String password, String name);
 
-    @javax.transaction.Transactional
     @Modifying
     @Query(value = "update app_user set status = 1 where id = :id", nativeQuery = true)
     void deleteUser(@Param("id") int id);
@@ -50,4 +49,8 @@ public interface UserRepository extends JpaRepository<AppUser,Integer> {
 
     @Query(value = "select email from app_user where email = :email", nativeQuery = true)
     String existsEmail(@Param("email") String email);
+
+    @Query(value = "select max(id) from app_user", nativeQuery = true)
+    Integer findMaxId();
+
 }

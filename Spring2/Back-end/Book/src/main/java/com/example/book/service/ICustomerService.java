@@ -10,4 +10,6 @@ public interface ICustomerService {
     List<Customer> findAll();
 
     Customer findHistoryByUsername(String username);
+
+    void create(Customer customer);
 }

@@ -16,12 +16,15 @@ import {AngularFireModule} from "@angular/fire";
 import {AngularFirestoreModule} from "@angular/fire/firestore";
 import {environment} from "../environments/environment";
 import {CardDetailModule} from "./card-detail/card-detail.module";
+import { TopBookComponent } from './top-book/top-book.component';
+import {TopBookModule} from "./top-book/top-book.module";
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
     FooterComponent,
+
 
   ],
   imports: [
@@ -34,6 +37,7 @@ import {CardDetailModule} from "./card-detail/card-detail.module";
     CartModule,
     CardDetailModule,
     BookModule,
+    TopBookModule,
     BrowserAnimationsModule,
     ToastrModule.forRoot({
       positionClass :'toast-top-right',

@@ -19,6 +19,8 @@ public interface IUserService {
 
     void save(AppUser appUser);
 
+    Integer findMaxId();
+
     Optional<AppUser> findById(Integer id);
 
     void edit(AppUser appUser);
@@ -28,4 +30,5 @@ public interface IUserService {
     Boolean existsUsername(String username);
 
     Boolean existsEmail(String email);
+
 }

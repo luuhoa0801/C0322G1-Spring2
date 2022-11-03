@@ -9,5 +9,5 @@ export interface Customer {
   phone?:number;
   gender?:number;
 
-  appUser?: AppUser;
+  appUserDto?: AppUser;
 }

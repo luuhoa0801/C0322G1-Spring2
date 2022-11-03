@@ -17,6 +17,7 @@ public class Book {
     private double price;
     private double discount;
     private String author;
+    @Column(columnDefinition = "longtext")
     private String description;
     private String dimension;
     private String translator;

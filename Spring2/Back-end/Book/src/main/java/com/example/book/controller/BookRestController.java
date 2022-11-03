@@ -1,10 +1,8 @@
 package com.example.book.controller;
 
-import com.example.book.dTo.BookDto;
-import com.example.book.dTo.CartDetailDto;
-import com.example.book.dTo.CartDto;
-import com.example.book.dTo.HistoryDto;
+import com.example.book.dTo.*;
 import com.example.book.entity.*;
+import com.example.book.repository.BookRepository;
 import com.example.book.service.*;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,9 +11,13 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.time.LocalDate;
 import java.util.LinkedList;
 import java.util.List;
@@ -25,6 +27,7 @@ import java.util.Optional;
 @CrossOrigin(origins = "*", allowedHeaders = "*")
 @RequestMapping("/api/public/book")
 public class BookRestController {
+
     @Autowired
     private IBookService iBookService;
     @Autowired
@@ -37,6 +40,7 @@ public class BookRestController {
 
     @Autowired
     private ICartService cartService;
+
 
     @GetMapping("/list")
     public ResponseEntity<Page<Book>> getCategoryVn(@RequestParam(defaultValue = "", required = false) String name,
@@ -59,7 +63,7 @@ public class BookRestController {
     }
 
     @PostMapping("/create")
-    public ResponseEntity<Object> create(@RequestBody BookDto bookDto, BindingResult bindingResult) {
+    public ResponseEntity<Object> create(@RequestBody BookDto bookDto) {
         Book book = new Book();
         BeanUtils.copyProperties(bookDto, book);
         iBookService.create(book);
@@ -67,7 +71,7 @@ public class BookRestController {
     }
 
     @PutMapping("/update/{id}")
-    public ResponseEntity<Object> update(@PathVariable("id") Integer id, @RequestBody BookDto bookDto, BindingResult bindingResult) {
+    public ResponseEntity<Object> update(@PathVariable("id") Integer id, @RequestBody BookDto bookDto) {
         Optional<Book> bookUpdate = iBookService.findById(id);
         if (bookUpdate == null) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
@@ -179,6 +183,39 @@ public class BookRestController {
             cartDetailDtoList.add(new CartDetailDto(cartDetail.getQuantity(), cartDetail.getBook()));
         }
         return new ResponseEntity<>(cartDetailDtoList, HttpStatus.OK);
+    }
+
+    //đăng ký tài khoản
+
+    public PasswordEncoder passwordEncoder() {
+        return new BCryptPasswordEncoder();
+    }
+
+    @PostMapping("/customer/create")
+    public ResponseEntity<List<FieldError>> create(@RequestBody CustomerDto customerDto) {
+
+        AppUserDto appUserDto = customerDto.getAppUserDto();
+
+        AppUser user = new AppUser();
+
+        BeanUtils.copyProperties(appUserDto, user);
+
+        user.setPassword(passwordEncoder().encode(user.getPassword()));
+
+        iUserService.save(user);
+        AppUser appUser = iUserService.findById(iUserService.findMaxId()).get();
+        Customer customer = new Customer();
+
+        BeanUtils.copyProperties(customerDto, customer);
+        customer.setAppUser(appUser);
+        iCustomerService.create(customer);
+
+        return new ResponseEntity<>(HttpStatus.CREATED);
+    }
+
+    @GetMapping("topBook/{start}/{end}")
+    public ResponseEntity<List<IBookDto>> getTopBook(@PathVariable("start") String startDate, @PathVariable("end") String endDate) {
+        return new ResponseEntity<>(iBookService.findTopByBook(startDate, endDate), HttpStatus.OK);
     }
 
 }

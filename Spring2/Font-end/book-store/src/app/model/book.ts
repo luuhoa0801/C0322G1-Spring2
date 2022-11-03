@@ -17,5 +17,6 @@ export interface Book {
   releaseDate?:string;
   category?: Category;
   status?:boolean;
+  amount?: number;
 }
 

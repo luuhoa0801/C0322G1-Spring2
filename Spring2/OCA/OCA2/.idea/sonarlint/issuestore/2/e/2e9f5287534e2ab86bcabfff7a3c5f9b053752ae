@@ -1,6 +1,16 @@
 
-g	java:S101"MRename this class name to match the regular expression '^[A-Z][a-zA-Z0-9]*$'.(óÎ °ùÿÿÿÿ
-0
-java:S1220""Move this file to a named package.
-V	java:S125"<This block of commented-out lines of code should be removed.(»ž•ûÿÿÿÿ
-U	java:S106"9Replace this use of System.out or System.err by a logger.(ìøó¾8ªŽÉ„º0
+g	java:S101"MRename this class name to match the regular expression '^[A-Z][a-zA-Z0-9]*$'.(óÎ °ùÿÿÿÿ
+V	java:S125"<This block of commented-out lines of code should be removed.(»ž•ûÿÿÿÿ
+V	java:S125"<This block of commented-out lines of code should be removed.(»ž•ûÿÿÿÿ
+V	java:S125#"<This block of commented-out lines of code should be removed.(»ž•ûÿÿÿÿ
+]	java:S1259"<This block of commented-out lines of code should be removed.(šÎÏÿÿÿÿÿ8¥‹Ì–Â0
+U	java:S106I"9Replace this use of System.out or System.err by a logger.(Ë®¥ô8÷àÈ–Â0
+]	java:S125F"<This block of commented-out lines of code should be removed.(Àû¶ñûÿÿÿÿ8Ò‰Î–Â0
+V	java:S125L"<This block of commented-out lines of code should be removed.(õ÷Íûÿÿÿÿ
+V	java:S125\"<This block of commented-out lines of code should be removed.(»ž•ûÿÿÿÿ
+R	java:S125"<This block of commented-out lines of code should be removed.(Ñß®
+W	java:S125†"<This block of commented-out lines of code should be removed.(»ž•ûÿÿÿÿ
+B
+java:S1128"%Remove this unused import 'java.awt'.(ï´µ©8á‹É–Â0
+M
+java:S1128"+Remove this unused import 'java.util.List'.(Õë±Äøÿÿÿÿ8á‹É–Â0
