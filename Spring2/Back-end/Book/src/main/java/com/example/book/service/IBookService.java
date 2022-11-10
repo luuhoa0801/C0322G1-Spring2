@@ -19,5 +19,8 @@ public interface IBookService {
     void update(Book book);
 
     void delete(int id);
+
     List<IBookDto> findTopByBook(String startDate, String endDate);
+
+    List<IBookDto> topBook();
 }

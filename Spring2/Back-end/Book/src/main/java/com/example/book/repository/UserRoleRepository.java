@@ -16,6 +16,6 @@ import java.util.List;
 public interface UserRoleRepository extends JpaRepository<UserRole,Integer> {
     List<UserRole> findAllByAppUser(AppUser appUser);
     @Modifying
-    @Query(value = "insert into user_role (`status`, `role_id`,`user_id`) values (0, :roleId, :userId)", nativeQuery = true)
-    void save(@Param("roleId") Integer roleId, @Param("userId") Integer userId);
+    @Query(value = "insert into user_role (`status`, `role_id`,`user_id`) values (0, 2, :userId)", nativeQuery = true)
+    void save(@Param("userId") Integer userId);
 }

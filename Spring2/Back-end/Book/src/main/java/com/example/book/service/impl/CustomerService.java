@@ -21,6 +21,7 @@ public class CustomerService implements ICustomerService {
     private UserRepository userRepository;
     @Autowired
     private UserRoleRepository userRoleRepository;
+
     @Override
     public Customer findByUsername(String username) {
         return customerRepository.findByUsername(username);
@@ -37,7 +38,7 @@ public class CustomerService implements ICustomerService {
     }
 
     @Override
-    public void create(Customer customer) {
+    public void createRegister(Customer customer) {
         List<AppUser> users = userRepository.findAll();
         UserRole userRole = new UserRole();
         AppRole roles = new AppRole();
@@ -46,8 +47,17 @@ public class CustomerService implements ICustomerService {
         userRole.setAppUser(users.get(users.toArray().length - 1));
         userRole.setAppRole(roles);
         userRoleRepository.save(userRole);
-
         customer.setAppUser(customer.getAppUser());
-        customerRepository.save(customer.getName(), customer.getAddress(), customer.getBirthDay(), customer.getGender(), customer.getPhone(),customer.getEmail(), users.toArray().length);
+        customerRepository.save(customer.getName(), customer.getAddress(), customer.getBirthDay(),
+                customer.getGender(), customer.getPhone(),customer.getEmail(), users.toArray().length);
+    }
+
+    @Override
+    public void create(Customer customer) {
+        if (customerRepository.findCustomerByEmail(customer.getEmail()) == null) {
+            AppUser appUser = userRepository.findById(userRepository.findMaxId()).get();
+            customer.setAppUser(appUser);
+            customerRepository.save(customer);
+        }
     }
 }

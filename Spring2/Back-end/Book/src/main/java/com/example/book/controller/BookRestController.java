@@ -2,7 +2,6 @@ package com.example.book.controller;
 
 import com.example.book.dTo.*;
 import com.example.book.entity.*;
-import com.example.book.repository.BookRepository;
 import com.example.book.service.*;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,11 +12,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.*;
 
-import javax.validation.Valid;
 import java.time.LocalDate;
 import java.util.LinkedList;
 import java.util.List;
@@ -111,6 +108,16 @@ public class BookRestController {
         return new ResponseEntity<>(customers, HttpStatus.OK);
     }
 
+    @GetMapping("/appUser")
+    public ResponseEntity<List<AppUser>> getAllUser() {
+        List<AppUser> appUsers = iUserService.findAll();
+        if (appUsers.isEmpty()) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        return new ResponseEntity<>(appUsers, HttpStatus.OK);
+    }
+
+
     @PostMapping("saveHistory/{username}")
     public ResponseEntity<List<CartDetailDto>> saveHistory(@PathVariable String username, @RequestBody List<CartDetailDto> list) {
         Customer customer = iCustomerService.findByUsername(username);
@@ -191,31 +198,41 @@ public class BookRestController {
         return new BCryptPasswordEncoder();
     }
 
-    @PostMapping("/customer/create")
+    @PostMapping("/createUser")
+    public ResponseEntity<?> addNewUser(@RequestBody AppUser appUser) {
+        iUserService.save(appUser);
+        return new ResponseEntity<>(HttpStatus.CREATED);
+    }
+
+    @PostMapping("/register")
     public ResponseEntity<List<FieldError>> create(@RequestBody CustomerDto customerDto) {
-
-        AppUserDto appUserDto = customerDto.getAppUserDto();
-
+        AppUserDto appUserDto = customerDto.getAppUser();
         AppUser user = new AppUser();
-
         BeanUtils.copyProperties(appUserDto, user);
-
         user.setPassword(passwordEncoder().encode(user.getPassword()));
-
-        iUserService.save(user);
+        iUserService.createRegister(user);
         AppUser appUser = iUserService.findById(iUserService.findMaxId()).get();
         Customer customer = new Customer();
-
         BeanUtils.copyProperties(customerDto, customer);
         customer.setAppUser(appUser);
-        iCustomerService.create(customer);
+        iCustomerService.createRegister(customer);
+        return new ResponseEntity<>(HttpStatus.CREATED);
+    }
 
+    @PostMapping("/customer/create")
+    public ResponseEntity<List<?>> create(@RequestBody Customer customer) {
+        iCustomerService.create(customer);
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
 
     @GetMapping("topBook/{start}/{end}")
     public ResponseEntity<List<IBookDto>> getTopBook(@PathVariable("start") String startDate, @PathVariable("end") String endDate) {
         return new ResponseEntity<>(iBookService.findTopByBook(startDate, endDate), HttpStatus.OK);
+    }
+
+    @GetMapping("topBook")
+    public ResponseEntity<List<IBookDto>> topBook() {
+        return new ResponseEntity<>(iBookService.topBook(), HttpStatus.OK);
     }
 
 }

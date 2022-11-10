@@ -14,10 +14,24 @@ public class CustomerDto {
     private int phone;
     private int gender;
     private boolean status;
-    private AppUserDto appUserDto;
+    private AppUserDto appUser;
     private Cart cart;
 
     public CustomerDto() {
+    }
+
+    public CustomerDto(Integer id, String name, String address, LocalDate birthDay, String email,
+                       int phone, int gender, boolean status, AppUserDto appUser, Cart cart) {
+        this.id = id;
+        this.name = name;
+        this.address = address;
+        this.birthDay = birthDay;
+        this.email = email;
+        this.phone = phone;
+        this.gender = gender;
+        this.status = status;
+        this.appUser = appUser;
+        this.cart = cart;
     }
 
     public Integer getId() {
@@ -84,12 +98,12 @@ public class CustomerDto {
         this.status = status;
     }
 
-    public AppUserDto getAppUserDto() {
-        return appUserDto;
+    public AppUserDto getAppUser() {
+        return appUser;
     }
 
-    public void setAppUserDto(AppUserDto appUserDto) {
-        this.appUserDto = appUserDto;
+    public void setAppUser(AppUserDto appUser) {
+        this.appUser = appUser;
     }
 
     public Cart getCart() {

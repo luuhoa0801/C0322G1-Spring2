@@ -63,4 +63,15 @@ public interface BookRepository extends JpaRepository<Book, Integer> {
             " order by amount desc " +
             " limit 10 ", nativeQuery = true)
     List<IBookDto> findTopByBook(@Param("startDate") String startDate, @Param("endDate") String endDate);
+
+    @Query(value = "select customer.name, sum(cart_detail.quantity) as amount " +
+            " from `book` " +
+            " join cart_detail on cart_detail.book_id = book.id " +
+            " join cart on cart.id = cart_detail.cart_id " +
+            " join customer on customer.id = cart.customer_id " +
+            " where cart.status = false " +
+            " group by customer.id " +
+            " order by amount desc " +
+            " limit 10",nativeQuery = true)
+    List<IBookDto> topBook();
 }

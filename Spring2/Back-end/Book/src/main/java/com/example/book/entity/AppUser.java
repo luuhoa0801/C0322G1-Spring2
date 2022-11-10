@@ -27,7 +27,6 @@ public class AppUser {
     @Column(columnDefinition = "BIT(1) DEFAULT 0")
     private Boolean status;
 
-    @JsonIgnore
     @OneToOne(mappedBy = "appUser")
     private Customer customer;
 

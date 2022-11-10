@@ -19,6 +19,8 @@ public interface IUserService {
 
     void save(AppUser appUser);
 
+    void createRegister(AppUser appUser);
+
     Integer findMaxId();
 
     Optional<AppUser> findById(Integer id);

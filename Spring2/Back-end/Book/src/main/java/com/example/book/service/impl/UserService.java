@@ -2,10 +2,13 @@ package com.example.book.service.impl;
 
 import com.example.book.entity.AppUser;
 import com.example.book.repository.UserRepository;
+import com.example.book.repository.UserRoleRepository;
 import com.example.book.service.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import javax.mail.MessagingException;
@@ -20,6 +23,8 @@ public class UserService implements IUserService {
     @Autowired
     UserRepository userRepository;
 
+    @Autowired
+    private UserRoleRepository userRoleRepository;
 
     @Autowired
     private JavaMailSender javaMailSender;
@@ -71,10 +76,25 @@ public class UserService implements IUserService {
         return userRepository.findAll();
     }
 
+    public PasswordEncoder passwordEncoder() {
+        return new BCryptPasswordEncoder();
+    }
+
     @Override
     public void save(AppUser appUser) {
+        if(userRepository.findAppUserByName(appUser.getUsername()) != null) {
+            return;
+        }
+        appUser.setPassword(passwordEncoder().encode(appUser.getPassword()));
+        userRepository.save(appUser);
+        userRoleRepository.save(appUser.getId());
+    }
+
+    @Override
+    public void createRegister(AppUser appUser) {
         userRepository.save(appUser.getUsername(), appUser.getPassword(), appUser.getEmail());
     }
+
 
     @Override
     public Integer findMaxId() {

@@ -53,4 +53,10 @@ public class BookService implements IBookService {
         return bookRepository.findTopByBook(startDate, endDate);
     }
 
+    @Override
+    public List<IBookDto> topBook() {
+        List<IBookDto> iBook = bookRepository.topBook();
+        return bookRepository.topBook();
+    }
+
 }

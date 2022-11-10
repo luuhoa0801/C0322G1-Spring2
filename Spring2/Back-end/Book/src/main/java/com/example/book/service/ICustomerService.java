@@ -12,4 +12,6 @@ public interface ICustomerService {
     Customer findHistoryByUsername(String username);
 
     void create(Customer customer);
+
+    void createRegister(Customer customer);
 }
