@@ -36,11 +36,10 @@ export class RegisterComponent implements OnInit {
   }
   submit(): void {
     let customer: Customer;
-
     customer = {
       name: this.customerForm.value.name,
       address: this.customerForm.value.address,
-      appUserDto: {
+      appUser: {
         email: this.customerForm.value.email,
         username: this.customerForm.value.username,
         password: this.customerForm.value.password,
@@ -51,13 +50,12 @@ export class RegisterComponent implements OnInit {
       phone: this.customerForm.value.phone,
     };
     console.log(customer);
-    this.customerService.saveCustomer(customer).subscribe(value => {
+    this.customerService.createRegister(customer).subscribe(value => {
       console.log(value);
       this.router.navigate(['/login']).then();
       Swal.fire('Thông Báo !!', 'Đăng Ký Tài Khoản Thành Công', 'success').then();
     }, error => {
       Swal.fire('Thông Báo !!', 'Đã Có Lỗi Xảy Ra. Đăng Ký Tài Khoản Thất Bại', 'error').then();
-      console.log(error);
     });
   }
 

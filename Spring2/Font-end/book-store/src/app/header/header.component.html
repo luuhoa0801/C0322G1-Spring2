@@ -4,7 +4,9 @@
          style="display: flex;gap:1rem;font-size: 1rem;margin: 0 auto;color: #076a3c">
       <div> Giới thiệu</div>
       <div ><a routerLink="/cartDetail" style="color:#076a3c ">Lịch sử giao dịch</a> </div>
-      <div> Kiểm tra đơn hàng</div>
+      <div>
+
+      </div>
     </div>
     <div class="col-6">
       <div class="col-2"></div>
@@ -56,7 +58,7 @@
                   class="text-uppercase">{{item.name}}</li>
             </ul>
           </li>
-          <li type="button" routerLink="/topBook">SÁCH BÁN CHẠY</li>
+          <li *ngIf="['ROLE_ADMIN'].indexOf(role)!==-1" type="button" routerLink="/topBook">SÁCH BÁN CHẠY</li>
           <li>CHƯƠNG TRÌNH KHUYẾN MÃI</li>
           <li *ngIf="['ROLE_ADMIN'].indexOf(role)!==-1" type="button" routerLink="create">THÊM MỚI SÁCH</li>
         </ul>

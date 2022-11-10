@@ -18,3 +18,19 @@
 .card-registration .select-arrow {
   top: 13px;
 }
+
+
+.form-text, span, i, mat-error {
+  color: red;
+  font-weight: bold;
+}
+
+mat-label, label {
+  font-weight: bold;
+  color: black;
+}
+
+.col {
+  display: flex;
+  align-items: stretch;
+}

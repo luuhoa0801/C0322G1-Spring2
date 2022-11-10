@@ -8,6 +8,6 @@ export interface Customer {
   email?:string;
   phone?:number;
   gender?:number;
-
-  appUserDto?: AppUser;
+  status?: false;
+  appUser?: AppUser;
 }

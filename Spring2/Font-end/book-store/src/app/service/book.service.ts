@@ -47,6 +47,8 @@ export class BookService {
   topBook(startDate: string, endDate: string): Observable<Book[]> {
     return this.http.get<Book[]>(this.API_URL +'/topBook/' + startDate + '/' + endDate);
   }
-
+  getBuyBook(): Observable<Book[]> {
+    return this.http.get<Book[]>(this.API_URL +'/topBook');
+  }
 
 }

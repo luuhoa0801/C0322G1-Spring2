@@ -16,8 +16,9 @@ import {AngularFireModule} from "@angular/fire";
 import {AngularFirestoreModule} from "@angular/fire/firestore";
 import {environment} from "../environments/environment";
 import {CardDetailModule} from "./card-detail/card-detail.module";
-import { TopBookComponent } from './top-book/top-book.component';
 import {TopBookModule} from "./top-book/top-book.module";
+import {GoogleLoginProvider, SocialAuthServiceConfig, SocialLoginModule} from "angularx-social-login";
+import {ChatModule} from "./chat/chat.module";
 
 @NgModule({
   declarations: [
@@ -38,9 +39,11 @@ import {TopBookModule} from "./top-book/top-book.module";
     CardDetailModule,
     BookModule,
     TopBookModule,
+    ChatModule,
+
     BrowserAnimationsModule,
     ToastrModule.forRoot({
-      positionClass :'toast-top-right',
+      positionClass: 'toast-top-right',
       timeOut: 1000,
       progressBar: true,
       progressAnimation: 'increasing',
@@ -50,8 +53,34 @@ import {TopBookModule} from "./top-book/top-book.module";
     //firebase
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFirestoreModule,
+
+    //loginface
+    SocialLoginModule
   ],
-  providers: [],
+  providers: [
+    {
+      provide: 'SocialAuthServiceConfig',
+      useValue: {
+        autoLogin: false,
+        providers: [
+          {
+            id: GoogleLoginProvider.PROVIDER_ID,
+            provider: new GoogleLoginProvider(
+              '122574885394-tnsp886mr1h7ae3901pf8clggt1rbbeb.apps.googleusercontent.com',
+              {scope: 'email', plugin_name: 'login-app'}
+            )
+          },
+          // {
+          //   id: FacebookLoginProvider.PROVIDER_ID,
+          //   provider: new FacebookLoginProvider('1562224584216970')
+          // }
+        ], onError: (err) => {
+          console.error(err);
+        }
+      } as SocialAuthServiceConfig,
+    }
+  ],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+}

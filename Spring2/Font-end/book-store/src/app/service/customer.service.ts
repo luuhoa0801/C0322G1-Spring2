@@ -2,6 +2,7 @@ import {Injectable} from '@angular/core';
 import {Observable} from "rxjs";
 import {Customer} from "../model/customer";
 import {HttpClient} from "@angular/common/http";
+import {AppUser} from "../model/appUser";
 
 @Injectable({
   providedIn: 'root'
@@ -23,5 +24,16 @@ export class CustomerService {
 
   saveCustomer(customer: Customer): Observable<Customer> {
     return this.http.post<Customer>(this.API_URL + '/customer/create', customer);
+  }
+  createRegister(customer: Customer): Observable<Customer> {
+    return this.http.post<Customer>(this.API_URL + '/register', customer);
+  }
+
+  getAllUser():Observable<AppUser[]>{
+    return this.http.get<AppUser[]>(this.API_URL + '/appUser')
+  }
+
+  addNewUser(appUser: AppUser): Observable<any> {
+    return this.http.post<any>(this.API_URL + "/createUser", appUser)
   }
 }

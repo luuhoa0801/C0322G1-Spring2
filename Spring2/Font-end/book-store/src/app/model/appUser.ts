@@ -6,5 +6,6 @@ export interface AppUser {
   username?: string;
   password?: string;
   status?: boolean;
-  customer?: Customer;
+  creationDate?: string;
+  // customer?: Customer;
 }
