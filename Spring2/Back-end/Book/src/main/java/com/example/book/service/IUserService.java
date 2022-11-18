@@ -1,6 +1,8 @@
 package com.example.book.service;
 
+import com.example.book.dTo.CartDetailDto;
 import com.example.book.entity.AppUser;
+import com.example.book.entity.Cart;
 
 import javax.mail.MessagingException;
 import java.io.UnsupportedEncodingException;
@@ -32,5 +34,7 @@ public interface IUserService {
     Boolean existsUsername(String username);
 
     Boolean existsEmail(String email);
+
+    void sendEmail(Cart cart, List<CartDetailDto> list) throws MessagingException, UnsupportedEncodingException;
 
 }

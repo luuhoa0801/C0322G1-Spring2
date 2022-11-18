@@ -40,7 +40,6 @@ export class BookDetailComponent implements OnInit {
     this.activatedRoute.paramMap.subscribe((paramMap: ParamMap) => {
       this.id = +paramMap.get('id');
       this.getDetail(this.id);
-      console.log(this.id)
     });
     this.shareService.getClickEvent().subscribe(() => {
       this.loadEditAdd();
@@ -64,15 +63,6 @@ export class BookDetailComponent implements OnInit {
   getDetail(id: number) {
     return this.bookService.findById(id).subscribe(book => {
       this.temp = book;
-
-      console.log(book);
-    });
-  }
-
-  getAll() {
-    // @ts-ignore
-    this.bookService.getListBook().subscribe(book => {
-      this.books = book;
     });
   }
 

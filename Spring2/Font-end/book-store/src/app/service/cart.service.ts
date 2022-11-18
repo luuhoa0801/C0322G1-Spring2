@@ -1,7 +1,5 @@
 import {Injectable} from '@angular/core';
 import {CartDetail} from "../model/cartDetail";
-import {HttpClient} from "@angular/common/http";
-import {Observable} from "rxjs";
 import {Book} from "../model/book";
 import {TokenStorageService} from "./token-storage.service";
 import {CartDetailService} from "./cart-detail.service";
@@ -12,8 +10,9 @@ import {CartDetailService} from "./cart-detail.service";
 export class CartService {
   cart: CartDetail[] = [];
 
-  constructor(private tokenStorageService: TokenStorageService,private cartDetailService: CartDetailService) {
+  constructor(private tokenStorageService: TokenStorageService, private cartDetailService: CartDetailService) {
   }
+
   addCard(book: Book, quantity: number) {
     let temp: CartDetail = {};
     if (JSON.parse(localStorage.getItem('cart')) !== null) {
@@ -30,7 +29,7 @@ export class CartService {
           this.cart.splice(i, 1);
         }
         localStorage.setItem('cart', JSON.stringify(this.cart));
-        this.cartDetailService.saveCart(this.tokenStorageService.getUser().username,JSON.parse(localStorage.getItem('cart'))).subscribe(() =>{
+        this.cartDetailService.saveCart(this.tokenStorageService.getUser().username, JSON.parse(localStorage.getItem('cart'))).subscribe(() => {
           return;
         })
         return;
@@ -43,6 +42,6 @@ export class CartService {
     this.cart.push(temp);
     localStorage.setItem('cart', JSON.stringify(this.cart));
     debugger
-    this.cartDetailService.saveCart(this.tokenStorageService.getUser().username,JSON.parse(localStorage.getItem('cart'))).subscribe();
+    this.cartDetailService.saveCart(this.tokenStorageService.getUser().username, JSON.parse(localStorage.getItem('cart'))).subscribe();
   }
 }

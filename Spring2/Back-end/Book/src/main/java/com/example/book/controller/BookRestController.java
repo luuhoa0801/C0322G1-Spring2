@@ -15,6 +15,8 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.*;
 
+import javax.mail.MessagingException;
+import java.io.UnsupportedEncodingException;
 import java.time.LocalDate;
 import java.util.LinkedList;
 import java.util.List;
@@ -119,7 +121,7 @@ public class BookRestController {
 
 
     @PostMapping("saveHistory/{username}")
-    public ResponseEntity<List<CartDetailDto>> saveHistory(@PathVariable String username, @RequestBody List<CartDetailDto> list) {
+    public ResponseEntity<List<CartDetailDto>> saveHistory(@PathVariable String username, @RequestBody List<CartDetailDto> list) throws MessagingException, UnsupportedEncodingException {
         Customer customer = iCustomerService.findByUsername(username);
         Cart cart = new Cart();
         cart.setDateCreate(LocalDate.now());
@@ -132,6 +134,7 @@ public class BookRestController {
             cartDetail.setQuantity(item.getQuantity());
             iCartDetailService.save(cartDetail);
         }
+        iUserService.sendEmail(cart,list);
         return new ResponseEntity<>(null, HttpStatus.CREATED);
     }
 
@@ -158,7 +161,7 @@ public class BookRestController {
     }
 
     @PostMapping("saveCart/{username}")
-    public ResponseEntity<List<CartDetailDto>> saveCart(@PathVariable String username, @RequestBody List<CartDetailDto> list) {
+    public ResponseEntity<List<CartDetailDto>> saveCart(@PathVariable String username, @RequestBody List<CartDetailDto> list) throws MessagingException, UnsupportedEncodingException {
         Customer customer = iCustomerService.findByUsername(username);
         Cart cart = cartService.findCart(customer.getId());
         if (cart == null) {
@@ -177,6 +180,7 @@ public class BookRestController {
             cartDetail.setQuantity(item.getQuantity());
             iCartDetailService.save(cartDetail);
         }
+
         return new ResponseEntity<>(null, HttpStatus.CREATED);
     }
 

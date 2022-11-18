@@ -17,7 +17,7 @@
       </div>
       <div class="col-8 align-items-center justify-content-center"
            style="display: flex;gap: 0.9rem;font-size: 1rem;margin:6px auto;color:#076a3c" [hidden]="!isLoggedIn">
-            <div style="color: #076a3c" routerLink="/detail">Tài khoản : <span> {{username}}</span></div>
+            <div style="color: #076a3c" type="button" routerLink="/detail">Tài khoản : <span> {{username}}</span></div>
             <div ><a style="color:#076a3c" href="" (click)="logOut()">Đăng xuất</a></div>
       </div>
       <div class="col-2"></div>
@@ -60,6 +60,7 @@
           </li>
           <li *ngIf="['ROLE_ADMIN'].indexOf(role)!==-1" type="button" routerLink="/topBook">SÁCH BÁN CHẠY</li>
           <li>CHƯƠNG TRÌNH KHUYẾN MÃI</li>
+          <li *ngIf="['ROLE_USER'].indexOf(role)!==-1" routerLink="/loginroom" type="button">LIÊN HỆ</li>
           <li *ngIf="['ROLE_ADMIN'].indexOf(role)!==-1" type="button" routerLink="create">THÊM MỚI SÁCH</li>
         </ul>
       </div>

@@ -19,6 +19,24 @@ public class test {
 //        System.out.println("Sum is " + s4);
 //    }
 
+
+    //Kiểm tra mảng đối xứng
+//    public static void main(String[] args) {
+//        int[] a={3,2,1,6,5,7,6,1,2,3};
+//        int kt =1;
+//        for (int i = 0; i < (a.length)/2; i++) {
+//            if (a[i] != a[a.length -i -1]){
+//                kt = 0;
+//                break;
+//            }
+//        }
+//        if (kt == 0){
+//            System.out.println("Mảng k đối xứng");
+//        }else {
+//            System.out.println("mảng đối xứng");
+//        }
+//    }
+
 //    public static void main(String[] args) {
 //        String[] a = {"a", "b", "a", "c", "b"};
 //        int count = 0;
@@ -51,27 +69,29 @@ public class test {
 //        System.out.printf("Số %d sau khi đảo ngược là: %d", num2, reversed);
 //    }
 
-    public static void main(String[] args) {
-        int[] array = {1,3,4,22,3,55,33,8,9};
-            Arrays.sort(array);
-//        for (int item :array) {
-//            System.out.println(item);
-//        }
 
-        for (int i = 0; i <array.length-1 ; i++) {
-            for (int j = i+1; j <array.length ; j++) {
-                if (array[i] > array[j]){
-                    int temp = array[i];
-                    array[i] = array[j];
-                    array[j] = temp;
-                }
-            }
-        }
-//        for (int i = 0; i <array.length ; i++) {
-//            System.out.println(array[i]);
+//    public static void main(String[] args) {
+//        int[] array = {1,3,4,22,3,55,33,8,9};
+//            Arrays.sort(array);
+////        for (int item :array) {
+////            System.out.println(item);
+////        }
+//
+//        for (int i = 0; i <array.length-1 ; i++) {
+//            for (int j = i+1; j <array.length ; j++) {
+//                if (array[i] > array[j]){
+//                    int temp = array[i];
+//                    array[i] = array[j];
+//                    array[j] = temp;
+//                }
+//            }
 //        }
-        System.out.println("Số lớn thứ 2 là " + (array[array.length-2]) );
-    }
+////        for (int i = 0; i <array.length ; i++) {
+////            System.out.println(array[i]);
+////        }
+//        System.out.println("Số lớn thứ 2 là " + (array[array.length-2]) );
+//    }
+
 
     //    public static void main(String args[]) {
 //        String s1 = "Hello";
@@ -88,9 +108,8 @@ public class test {
 //        System.out.println(d);
 //    }
 
-
-    //    public static void main(String[] args) {
 //        //đảo ngược các phần tử trong chuỗi
+    //    public static void main(String[] args) {
 //        String a = "aloxinh";
 //        StringBuffer stringBuffer = new StringBuffer(a);
 //        System.out.println(stringBuffer.reverse().toString());
@@ -130,20 +149,8 @@ public class test {
 //            String str = String.format("%03d\n",5);
 //    }
 
-
-//    public static void main(String[] args) {
-//        int[] arr1 = {6, 3, 2, 5, 7, 2, 1, 1,6,7};
-//        solution(arr1);
-//    }
-//
-//    static void solution(int[] arr1) {
-//        Set<Integer> set = new HashSet<>();
-//        for (int i = 0; i < arr1.length ; i++) {
-//            set.add(arr1[i]);
-//        }
-//        System.out.println(set);
-//    }
-//public static void main(String[] args) {
+    // đảo ngược các phần tử ko sử dụng biến tạm
+    //public static void main(String[] args) {
 //    int a = 4;
 //    int b = 7;
 //    a = a+b;
@@ -153,6 +160,93 @@ public class test {
 //    System.out.println(b);
 //
 //}
+
+
+    //loại bỏ phần tử trùng lặp
+
+
+
+
+//public static void main(String[] args) {
+//            int[] arr = {6, 3, 2, 5, 7, 2, 1, 1,6,7};
+//            int size = arr.length;
+//    for (int i = 0; i < size-1 ; i++) {
+//        for (int j = i+1; j < size ; j++) {
+//            if (arr[i] == arr[j]){
+//                for (int k = j; k < size -1 ; k++) {
+//                    arr[k] = arr[k+1];
+//                }
+//                arr[size-1] =0;
+//                size--;
+//            }
+//        }
+//    }
+//    System.out.println(Arrays.toString(arr));
+//}
+
+    // lấy các giá trị không trùng lặp
+//    public static void main(String[] args) {
+//        int arr[] = {1, 3, 3, 4,4, 5, 9, 6, 3};
+//        Arrays.sort(arr);
+//        int j = 0;
+//        for (int i = 0; i < arr.length - 1; i++) {
+//            if (arr[i] != arr[i + 1]) {
+//                arr[j] = arr[i];
+//                j++;
+//            }
+//        }
+//        arr[j] = arr[arr.length - 1];
+//        for (int i = 0; i <= j; i++) {
+//            System.out.print(arr[i] + " ");
+//        }
+//    }
+
+    //OCA9
+//    public static void main(String[] args) {
+//        String opt = true;
+//        switch (opt){
+//            case true:
+//                System.out.println("True");
+//                break;
+//            default:
+//                System.out.println("***");
+//        }
+//        System.out.println("Done");
+//    }
+
+//    public static void main(String[] args) {
+//        int x = 100;
+//        int a = x++;
+//        int b = ++x;
+//        int c = x++;
+//        int f = ++x;
+//        int d = (a < b) ? (a < c) ? a : (b < c) ? b : c;
+//        System.out.println(a);
+//        System.out.println(b);
+//        System.out.println(c);
+//        System.out.println(d);
+//        System.out.println(f);
+//    }
+
+    //OCA10
+//    public static void main(String[] args) {
+//        String[] [] chs = new String[2][];
+//        chs[0] = new String[2];
+//        chs[1] = new String[5];
+//        int i = 97;
+//        for (int a = 0; a < chs.length ; a++) {
+//            for (int b = 0; b < chs.length; b++) {
+//                chs[a][b] = "" + i;
+//                i++;
+//            }
+//        }
+//        for (String[] ca:chs) {
+//            for (String c: ca) {
+//                System.out.print(c + " ");
+//            }
+//            System.out.println();
+//        }
+//    }
 
 
 }

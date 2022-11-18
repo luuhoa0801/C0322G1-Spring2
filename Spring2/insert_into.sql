@@ -27,58 +27,28 @@ INSERT INTO `app_role`  VALUES
 (1, 'ROLE_ADMIN',0),
 (2, 'ROLE_USER',0);
 INSERT INTO `app_user`  VALUES 
-(1, '2022-01-01', 'luuhoa0801@gmail.com', '12345',0, 'admin'),
-(2, '2022-02-02', 'hoathuytien12369@gmail.com', '12345',0, 'user');
+(1, '2022-01-01', 'hoa@gmail.com', '$2a$10$AFDDl9JoG6mniECGmKvR3eg1YWyWPppzWweLeZ1doD2Wg3jJq3ukG',0, 'admin'),
+(2, '2022-02-02', 'linh@gmail.com', '$2a$10$AFDDl9JoG6mniECGmKvR3eg1YWyWPppzWweLeZ1doD2Wg3jJq3ukG',0, 'user'),
+(3, '2022-02-02', 'long@gmail.com', '$2a$10$AFDDl9JoG6mniECGmKvR3eg1YWyWPppzWweLeZ1doD2Wg3jJq3ukG',0, 'long'),
+(4, '2022-02-02', 'dotronghoang95@gmail.com', '$2a$10$AFDDl9JoG6mniECGmKvR3eg1YWyWPppzWweLeZ1doD2Wg3jJq3ukG',0, 'hoang');
 insert into `user_role` values
 (1, 0, 1, 1),
 (2, 0, 2, 1),
-(3, 0, 2, 2);
+(3, 0, 2, 2),
+(4, 0, 2, 3),
+(5, 0, 2, 4);
 
 insert into `customer` values
 (1, 'Quảng Nam', '1995-01-08','hoa@gmail.com', '1', 'Lưu Hòa', 0976482451, 0, 1),
-(2, 'Đà Nẵng', '1995-10-11','linh@gmail.com', '2', 'Nguyễn Văn Linh', 0901234785, 0, 2);
+(2, 'Đà Nẵng', '1995-10-11','linh@gmail.com', '2', 'Nguyễn Văn Linh', 0901234785, 0, 2),
+(3, 'Quảng Trị', '1999-10-10','long@gmail.com', '2', 'Nguyễn Thành Long', 090101010, 0, 3),
+(4, 'Huế', '1995-10-11','dotronghoang95@gmail.com', '2', 'Trần Văn Hoàng', 0901020304, 0, 4);
 
 
 
 
-insert into `cart` values
-(1, '2022-09-09', 0, 1),
-(2, '2022-09-09', 0, 2),
-(3, '2022-09-09', 0, 3),
-(4, '2022-09-09', 0, 1),
-(5, '2022-09-09', 0, 1),
-(6, '2022-09-09', 0, 2),
-(7, '2022-09-09', 0, 3),
-(8, '2022-09-09', 0, 1),
-(9, '2022-09-09', 0, 2),
-(10, '2022-09-09', 0, 3),
-(11, '2022-09-09', 0, 1),
-(12, '2022-09-09', 0, 2),
-(13, '2022-09-09', 0, 3),
-(14, '2022-09-09', 0, 1),
-(15, '2022-09-09', 0, 2),
-(16, '2022-09-09', 0, 3);
 
-insert into `cart_detail` values
-(1, 5, 1, 1),
-(2, 15, 2, 1),
-(3, 50, 1, 1),
-(4, 5, 1, 1),
-(5, 15, 2, 1),
-(6, 50, 1, 1),
-(7, 5, 1, 1),
-(8, 15, 2, 1),
-(9, 50, 1, 1),
-(10, 5, 1, 1),
-(11, 15, 2, 1),
-(12, 50, 1, 1),
-(13, 5, 1, 1),
-(14, 15, 2, 1),
-(15, 50, 1, 1),
-(16, 5, 1, 1),
-(17, 15, 2, 1),
-(18, 50, 1, 1);
 -- insert into `roles` values (1, 'ROLE_ADMIN', 0), (2, 'ROLE_USER', 0);
-INSERT INTO `book_store`.`app_role` VALUES ('1', 'ROLE_NAME',0),(2, 'ROLE_USER', 0);
+-- INSERT INTO `book_store`.`app_role` VALUES ('1', 'ROLE_NAME',0),(2, 'ROLE_USER', 0);
 
 

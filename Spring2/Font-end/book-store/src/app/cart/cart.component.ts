@@ -92,7 +92,6 @@ export class CartComponent implements OnInit {
         this.cartDetailService.saveCartDetail(username, this.cartDetail).subscribe(() => {
           this.cartDetailService.saveCart(username,[]).subscribe();
           }
-
         );
         Swal.fire({
           title: 'Thanh Toán Thành Công',

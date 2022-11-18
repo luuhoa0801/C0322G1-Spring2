@@ -1,0 +1,7 @@
+
+L
+java:S1197"*Move the array designators [] to the type.(¸Òà¦ùÿÿÿÿ8ÿúúÓÇ0
+{
+java:S3012
+"YUse "Arrays.copyOf", "Arrays.asList", "Collections.addAll" or "System.arraycopy" instead.(”ÏÛ·øÿÿÿÿ8ÿúúÓÇ0
+U	java:S106"9Replace this use of System.out or System.err by a logger.(×Æáî8ÿúúÓÇ0

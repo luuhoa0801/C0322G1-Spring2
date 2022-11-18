@@ -1,8 +1,8 @@
 <div class="container">
   <form class="example-form" [formGroup]="roomForm" (ngSubmit)="onFormSubmit(roomForm.value)">
-    <h2>Please enter new Room</h2>
+    <h2>Vui lòng nhập tên phòng :</h2>
     <mat-form-field class="example-full-width">
-      <mat-label>Room Name</mat-label>
+      <mat-label>Tên Phòng :</mat-label>
       <input matInput placeholder="Enter room name" formControlName="roomname"
              [errorStateMatcher]="matcher">
       <mat-error>
