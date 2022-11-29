@@ -143,7 +143,7 @@ public class UserService implements IUserService {
         String mailContent = "";
         MimeMessage message = javaMailSender.createMimeMessage();
         MimeMessageHelper helper = new MimeMessageHelper(message, "UTF-8");
-        helper.setFrom("dotronghoang95@gmail.com", "Book Store");
+        helper.setFrom("luuhoa0801@gmail.com", "Book Store");
         helper.setTo(cart.getCustomer().getEmail());
         helper.setSubject(subject);
 

@@ -24,17 +24,20 @@ public class test {
 //    public static void main(String[] args) {
 //        int[] a={3,2,1,6,5,7,6,1,2,3};
 //        int kt =1;
+//        int sum = 0;
 //        for (int i = 0; i < (a.length)/2; i++) {
 //            if (a[i] != a[a.length -i -1]){
 //                kt = 0;
 //                break;
 //            }
+//            sum++;
 //        }
 //        if (kt == 0){
 //            System.out.println("Mảng k đối xứng");
 //        }else {
 //            System.out.println("mảng đối xứng");
 //        }
+//        System.out.println(sum);
 //    }
 
 //    public static void main(String[] args) {
@@ -247,6 +250,39 @@ public class test {
 //            System.out.println();
 //        }
 //    }
+    public static void main(String[] args) {
+//        int n = 21;
+//        int sum =0;
+//        int kt = 0;
+//        for (int i = 1; i < n ; i++) {
+//            if (i % 5 ==0){
+//                sum += i;
+//                kt ++ ;
+//                System.out.println(i);
+//            }
+//            if (kt ==2){
+//                break;
+//            }
+//        }
+//        System.out.println(sum);
+
+
+//        int[] arr = {1,2,3,4,5,4,3,2,1};
+//        int kt = 1;
+//        for(int i = 0;i<arr.length/2;i++){
+//            if(arr[i] != arr[arr.length-1-i]){
+//                kt = 0;
+//                break;
+//            }
+//        }
+//        if(kt == 0){
+//            System.out.println("Mảng k đối xứng");
+//        }else{
+//            System.out.println("Mảng đối xứng");
+//        }
+
+
+    }
 
 
 }

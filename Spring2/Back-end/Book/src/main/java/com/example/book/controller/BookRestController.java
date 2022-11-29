@@ -3,6 +3,8 @@ package com.example.book.controller;
 import com.example.book.dTo.*;
 import com.example.book.entity.*;
 import com.example.book.service.*;
+import com.example.book.service.impl.EmailService;
+import freemarker.template.TemplateException;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -16,6 +18,7 @@ import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.*;
 
 import javax.mail.MessagingException;
+import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.time.LocalDate;
 import java.util.LinkedList;
@@ -39,6 +42,9 @@ public class BookRestController {
 
     @Autowired
     private ICartService cartService;
+
+    @Autowired
+    private EmailService emailService;
 
 
     @GetMapping("/list")
@@ -121,7 +127,7 @@ public class BookRestController {
 
 
     @PostMapping("saveHistory/{username}")
-    public ResponseEntity<List<CartDetailDto>> saveHistory(@PathVariable String username, @RequestBody List<CartDetailDto> list) throws MessagingException, UnsupportedEncodingException {
+    public ResponseEntity<List<CartDetailDto>> saveHistory(@PathVariable String username, @RequestBody List<CartDetailDto> list) throws MessagingException, IOException, TemplateException {
         Customer customer = iCustomerService.findByUsername(username);
         Cart cart = new Cart();
         cart.setDateCreate(LocalDate.now());
@@ -134,7 +140,8 @@ public class BookRestController {
             cartDetail.setQuantity(item.getQuantity());
             iCartDetailService.save(cartDetail);
         }
-        iUserService.sendEmail(cart,list);
+//        iUserService.sendEmail(cart,list);
+        emailService.sendEmail(cart,list);
         return new ResponseEntity<>(null, HttpStatus.CREATED);
     }
 

@@ -1,24 +1,24 @@
 
 g	java:S101"MRename this class name to match the regular expression '^[A-Z][a-zA-Z0-9]*$'.(óÎ °ùÿÿÿÿ
-d
-java:S2094"BRemove this empty class, write its code or make it an "interface".(óÎ °ùÿÿÿÿ8ù²€¨È0
 V	java:S125"<This block of commented-out lines of code should be removed.(»ž•ûÿÿÿÿ
 V	java:S125"<This block of commented-out lines of code should be removed.(»ž•ûÿÿÿÿ
-V	java:S125("<This block of commented-out lines of code should be removed.(»ž•ûÿÿÿÿ
-V	java:S1255"<This block of commented-out lines of code should be removed.(»ž•ûÿÿÿÿ
-V	java:S125I"<This block of commented-out lines of code should be removed.(»ž•ûÿÿÿÿ
-V	java:S125`"<This block of commented-out lines of code should be removed.(õ÷Íûÿÿÿÿ
-V	java:S125p"<This block of commented-out lines of code should be removed.(»ž•ûÿÿÿÿ
-R	java:S125”"<This block of commented-out lines of code should be removed.(Ñß®
-W	java:S125™"<This block of commented-out lines of code should be removed.(»ž•ûÿÿÿÿ
-W	java:S125ª"<This block of commented-out lines of code should be removed.(»ž•ûÿÿÿÿ
-W	java:S125¼"<This block of commented-out lines of code should be removed.(»ž•ûÿÿÿÿ
-W	java:S125Í"<This block of commented-out lines of code should be removed.(»ž•ûÿÿÿÿ
-W	java:S125Ù"<This block of commented-out lines of code should be removed.(»ž•ûÿÿÿÿ
-^	java:S125è"<This block of commented-out lines of code should be removed.(»ž•ûÿÿÿÿ8þ²€¨È0
-B
-java:S1128"%Remove this unused import 'java.awt'.(ï´µ©8ÙóÍžÈ0
-C
-java:S1128"&Remove this unused import 'java.util'.(Î€ŒÙ8ÙóÍžÈ0
-M
-java:S1128"+Remove this unused import 'java.util.List'.(Õë±Äøÿÿÿÿ8ÙóÍžÈ0
+V	java:S125+"<This block of commented-out lines of code should be removed.(»ž•ûÿÿÿÿ
+V	java:S1258"<This block of commented-out lines of code should be removed.(»ž•ûÿÿÿÿ
+V	java:S125L"<This block of commented-out lines of code should be removed.(»ž•ûÿÿÿÿ
+V	java:S125c"<This block of commented-out lines of code should be removed.(õ÷Íûÿÿÿÿ
+V	java:S125s"<This block of commented-out lines of code should be removed.(»ž•ûÿÿÿÿ
+R	java:S125—"<This block of commented-out lines of code should be removed.(Ñß®
+W	java:S125œ"<This block of commented-out lines of code should be removed.(»ž•ûÿÿÿÿ
+W	java:S125­"<This block of commented-out lines of code should be removed.(»ž•ûÿÿÿÿ
+W	java:S125¿"<This block of commented-out lines of code should be removed.(»ž•ûÿÿÿÿ
+W	java:S125Ð"<This block of commented-out lines of code should be removed.(»ž•ûÿÿÿÿ
+W	java:S125Ü"<This block of commented-out lines of code should be removed.(»ž•ûÿÿÿÿ
+W	java:S125ë"<This block of commented-out lines of code should be removed.(»ž•ûÿÿÿÿ
+W	java:S125þ"<This block of commented-out lines of code should be removed.(°Ú²ýÿÿÿÿ
+Y	java:S125Ž"<This block of commented-out lines of code should be removed.(¾¶¢Ë8¹™¼½Ê0
+;
+java:S1128"%Remove this unused import 'java.awt'.(ï´µ©
+<
+java:S1128"&Remove this unused import 'java.util'.(Î€ŒÙ
+F
+java:S1128"+Remove this unused import 'java.util.List'.(Õë±Äøÿÿÿÿ
